@@ -1,0 +1,159 @@
+#footer {
+  margin-top: 10rem;
+}
+
+.ms-8 {
+  margin-left: 22.75rem;
+}
+#RT {
+  color: yellow;
+  font-weight: bold;
+}
+
+#search{
+  width: 450px;
+}
+#text {
+  color: #fff; 
+  font-weight: bold; 
+}
+
+#text:hover {
+  background-color: white;
+  color: #222222;
+  border-radius:10%;
+}
+
+.container-1 {
+  background-color: #FA320A;
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white; /* Optional: Card background */
+}
+
+button {
+  background-color: #f2c60f; /* Your button color */
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: auto; /* To push the button to the bottom of the card */
+}
+
+
+.container-2 {
+  background-color: #FA320A;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.container-3 {
+  background-color: gray;
+  color: #fff;
+}
+
+.back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #FA320A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+    /* Style the carousel item images */
+    .carousel-item img {
+      height: 400px; 
+      object-fit: cover;
+    }
+
+    /* Style the overlay text */
+    .carousel-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px;
+      max-width: 70%;
+      text-align: left;
+    }
+
+    /* Customize the navigation arrows */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: black;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
+
+    .multi-item-carousel {
+      .carousel-inner {
+        > .item {
+          transition: 500ms ease-in-out left;
+        }
+        .active {
+          &.left {
+            left: -33%;
+          }
+          &.right {
+            left: 33%;
+          }
+        }
+        .next {
+          left: 33%;
+        }
+        .prev {
+          left: -33%;
+        }
+        @media all and (transform-3d), (-webkit-transform-3d) {
+          > .item {
+            transition: 500ms ease-in-out left;
+            transition: 500ms ease-in-out all;
+            backface-visibility: visible;
+            transform: none !important;
+          }
+        }
+      }
+      .carouse-control {
+        &.left,
+        &.right {
+          background-image: none;
+        }
+      }
+    }
+
+
+.a-tag {
+  color: #000;
+  text-decoration: none;
+}
+
+.carousel-img {
+  /* 1920x1080 or 1600x900*/
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+
+@media (max-width: 768px) {
+  .carousel {
+      width: 95%;  
+  }
+}
