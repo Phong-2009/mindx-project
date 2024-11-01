@@ -129,6 +129,7 @@
         let users = JSON.parse(localStorage.getItem('users')) || [];
         for (let i = 0; i < users.length; i++) {
             if (users[i].email === email && users[i].password === password) {
+                localStorage.setItem('loggedInUser', JSON.stringify(users[i].first_name + ' ' + users[i].last_name));
                 alert('Logged in successfully');
                 window.location.href = 'index.html';
                 return;

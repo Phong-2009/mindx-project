@@ -54,3 +54,29 @@ $(document).ready(function () {
 //         login.innerHTML = login.innerHTML.replace('LOGIN', 'LOGOUT');
 //     }
 
+
+
+document.addEventListener('DOMContentLoaded', checkLoginStatus);
+
+function checkLoginStatus() {
+    let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userInfo = document.getElementById('user-info');
+
+    if (loggedInUser) {
+        userInfo.innerHTML = `
+            <a class="nav-link p-2 bd-highlight custom-login-link" href="#" onclick="logout()">
+                ${loggedInUser} <span class="btn btn-sm ms-2" style="color: #fff; font-weight: bold">LOGOUT</span>
+            </a>
+        `;
+    } else {
+        userInfo.innerHTML = `
+            <a class="nav-link p-2 bd-highlight custom-login-link" style="font-weight: bold;" href="./login.html">LOGIN</a>
+        `;
+    }
+}
+
+function logout() {
+    localStorage.removeItem('loggedInUser');
+    checkLoginStatus();
+    alert("You have been logged out.");
+}

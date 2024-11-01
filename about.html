@@ -1,242 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FilmCritics | About</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">   
+    <!-- Bootstrap and Font Awesome CSS -->
+     <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png">
+    <style>
+        /* Hero Banner */
+        .hero-banner {
+            background-image: url('https://images.unsplash.com/photo-1542204165-8d4edc707b92');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer and Back to Top Button */
+        #footer {
+            background-color: #222;
+            color: #ddd;
+        }
+
+        #footer a {
+            color: #ddd;
+        }
+
+        #footer a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #FA320A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<style>
-    #RT {
-  color: yellow;
-  font-weight: bold;
-}
 
-#footer {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+<body style="background-color: rgb(20, 20, 20);">
 
-
-#text {
-  color: #fff;  
-  font-weight: bold;
-}
-
-#text:hover {
-  background-color: white;
-  color: #000;
-  border-radius:10%;
-}
-
-.container-1 {
-  background-color: #FA320A;
-}
-
-
-.ms-8 {
-  margin-left: 22.75rem;
-}
-
-.container-2 {
-  background-color: #FA320A;
-  margin-top: -10px;
-  margin-bottom: -10px;
-}
-
-.container-3 {
-  background-color: gray;
-  color: #fff;
-}
-
-.back-to-top-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #FA320A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-</style>
-<body style="background-color: #222222;">
     <!-- Header -->
-    <header>              
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid container-2 p-3">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+            <div class="container-fluid container-2 div-custom">
                 <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem;">FilmCritics®</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-lg-0">
                         <li class="nav-item">
                             <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
                         </li>
                         <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight" href="./signup.html">SIGNUP</a>
+                            <a id="text" class="nav-link p-2 bd-highlight" href="https://www.fandango.com/movies-in-theaters?a=13036">SHOWTIMES</a>
                         </li>
-                        <li class="nav-item">
-                            <a id="text" class="nav-link login p-2 bd-highlight" href="./login.html">LOGIN</a>
+                        <li class="nav-item" id="user-info">
+                            <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
                         </li>
-                        <li class="nav-item">
-                            <a id="text" class="nav-link" href="https://www.fandango.com/movies-in-theaters?a=13036">SHOWTIMES</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <nav class="navbar-nav ms-auto mb-lg-0"></nav>
-            <div class="container-fluid container-3">
-                <div class="d-flex justify-content-start" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex flex-row">
-                        <li class="nav-item">
-                            <a id="RT" class="nav-link p-2 bd-highlight" href="#">TRENDING ON RT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/rt-hub/hispanic-heritage/">Hispanic Heritage Month</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/hub-subpage/horror-season/">Spooky season</a>
-                        </li>
-                        <li class="nav-item"></li>
-                            <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/article/movie-re-releases-calendar/">Movie Re-Release Calendar</a>
-                        </li>
-                        <li class="nav-item"></li>
-                            <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/article/tv-premiere-dates-2024/">TV Premier Dates</a>
-                        </li>
-
-                        <nav class="navbar-nav me-auto  mb-lg-0">
-                            <div class="d-flex justify-content-end ms-8" id="navbarSupportedContent">
-                                <div class="container-fluid d-flex flex-row-reverse">
-                                    <ul class="navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0">
-                                        <li class="nav-item"></li>
-                                            <a class="nav-link p-2 bd-highlight" href="https://www.facebook.com/rottentomatoes">
-                                                <i class="fa-brands fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item"></li>
-                                            <a class="nav-link p-2 bd-highlight" href="https://www.instagram.com/rottentomatoes/">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item"></li>
-                                            <a class="nav-link p-2 bd-highlight" href="https://www.tiktok.com/@rottentomatoes">
-                                                <i class="fa-brands fa-tiktok"></i>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item"></li>
-                                            <a class="nav-link p-2 bd-highlight" href="https://www.youtube.com/user/rottentomatoes">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </nav>
-                    </ul>
-                </div>
+    
+        <div class="container-fluid container-3 px-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Left Section: Trending Links -->
+                <ul class="navbar-nav d-flex flex-row">
+                    <li class="nav-item">
+                        <a id="RT" class="nav-link p-2 bd-highlight" href="#">TRENDING ON RT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/rt-hub/hispanic-heritage/">Hispanic Heritage Month</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/hub-subpage/horror-season/">Spooky Season</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/article/movie-re-releases-calendar/">Movie Re-Release Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://editorial.rottentomatoes.com/article/tv-premiere-dates-2024/">TV Premiere Dates</a>
+                    </li>
+                </ul>
+    
+                <!-- Right Section: Social Media Links -->
+                <ul class="navbar-nav d-flex flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://www.facebook.com/rottentomatoes">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://www.instagram.com/rottentomatoes/">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://www.tiktok.com/@rottentomatoes">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 bd-highlight" href="https://www.youtube.com/user/rottentomatoes">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- body -->
-    <div style="color: #fff;">
-        <div class="container">
-          <div class="col-md-8 mt-5">
-            <!-- about -->
-            <h3>About FilmCritics®</h3>
-            <p>As the world’s most trusted and recognized source of movie and TV reviews, FilmCritics, also known as a better version of RottenTomatoes, has served as the most reliable home of entertainment recommendations. We offer authentic reactions in a broad range of reviews from professional critics and everyday fans alike in addition to helpful, easily digestible what-to-watch roundups. Not only that, but we help build anticipation and provide fans with access to first look entertainment previews, trailers, behind-the-scenes exclusives, and more, as well as original editorial features, fun and informative video series, and even books and games. If you're an entertainment fan looking for a diverse range of perspectives curated in an easy-to-understand format, we'll help you find what you're in the mood for and open your eyes to new things to enjoy.</p><br>
-
-            
-          <div class="col-6 col-md-4 mt-3 mb-2">
-            <a href="./contact.html">Contact us</a>
-            
-
-          </div>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div>
+            <h1>Welcome to FilmCritics®</h1>
+            <p>Your Trusted Source for Entertainment Insights</p>
         </div>
-      </div>
+    </section>
 
-<!-- Footer -->
-<footer id="footer" class="bg-dark text-white pt-5 pb-4">
-    <div class="container text-center text-md-left">
-        <div class="row text-center text-md-left">
+    <!-- Our Mission Section -->
+    <section class="container my-5 text-white">
+        <h2 class="text-center mb-4">Our Mission</h2>
+        <p class="text-center">At FilmCritics, we are dedicated to delivering honest, thoughtful, and diverse film and
+            television reviews. Our mission is to guide our audience through the vast world of entertainment, ensuring
+            they find movies and shows that resonate with their tastes and interests. We believe that storytelling is an
+            art, and it’s our job to celebrate, critique, and bring perspective to this art form for audiences around
+            the world.</p>
+    </section>
 
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
-                <p>FilmCritics Corporation</p>
+    <!-- Why Choose Us Section -->
+    <section class="container my-5 text-white">
+        <h2 class="text-center mb-4">Why Choose FilmCritics?</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <i class="fas fa-star fa-3x text-warning"></i>
+                <h4 class="mt-3">Expert Reviews</h4>
+                <p>Our reviews come from seasoned professionals who have a deep understanding of the entertainment
+                    industry.</p>
             </div>
-
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
-                <p><a href="./index.html" class="text-white" style="text-decoration: none;">Home</a></p>
-                <p><a href="./about.html" class="text-white" style="text-decoration: none;">About</a></p>
-                <p><a href="#" class="text-white" style="text-decoration: none;">Services</a></p>
-                <p><a href="./contact.html" class="text-white" style="text-decoration: none;">Contact</a></p>
+            <div class="col-md-4 mb-3">
+                <i class="fas fa-users fa-3x text-info"></i>
+                <h4 class="mt-3">Diverse Voices</h4>
+                <p>We showcase a variety of opinions, offering perspectives from fans and critics alike.</p>
             </div>
-
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
-                <a href="location.html" style="text-decoration: none; color:#fff">
-                    <i class="fas fa-home mr-3"></i> Ho Chi Minh City, Vietnam
-                </a>
-                <p><i class="fas fa-envelope mr-3"></i>FilmCritics@example.com</p>
-                <p><i class="fas fa-phone mr-3"></i> +1234 5678</p>
-                <p><i class="fas fa-print mr-3"></i> +1234 5678</p>
-            </div>
-
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
-                <a href="https://www.facebook.com/rottentomatoes" class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.tiktok.com/@rottentomatoes" class="btn btn-floating m-1" style="background-color: #000; color: #fff;"><i class="fab fa-tiktok"></i></a>
-                <a href="https://twitter.com/RottenTomatoes?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="btn btn-info btn-floating m-1" style="background-color: #55acee;"><i class="fab fa-twitter"></i></a>
-            </div>
-
-        </div>
-
-        <hr class="mb-4">
-
-        <div class="row align-items-center">
-            <div class="col-md-7 col-lg-8">
-                <p>© 2024 Copyright: <a href="#" style="text-decoration: none;"><strong class="text-white">FilmCritics</strong></a></p>
-            </div>
-            <div class="col-md-5 col-lg-4">
-                <p>Designed by Lam Phong</p>
+            <div class="col-md-4 mb-3">
+                <i class="fas fa-thumbs-up fa-3x text-success"></i>
+                <h4 class="mt-3">Reliable Recommendations</h4>
+                <p>Whether you're looking for something new or revisiting classics, our recommendations are tailored for
+                    all tastes.</p>
             </div>
         </div>
-    </div>
-</footer>
-      
+    </section>
+
+    <!-- Team Highlights Section -->
+    <section class="container my-5 text-white">
+        <h2 class="text-center mb-4">Meet Our Team</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark border-0 text-white">
+                    <img src="https://ekat8wd2es5.exactdn.com/wp-content/uploads/2022/05/emma-johnson-1.jpeg?strip=all&lossy=1&quality=90&webp=90&ssl=1" class="card-img-top"
+                        alt="Team Member" style="width: 416px; height: 400px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Emma Johnson</h5>
+                        <p class="card-text">Lead Film Critic with over 15 years of experience in the industry.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark border-0 text-white">
+                    <img src="https://www.battery.com/wp-content/uploads/2021/02/Michael_Brown-2021-Cropped-Headshot.jpg" class="card-img-top"
+                        alt="Team Member" style="width: 416px; height: 400px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Michael Brown</h5>
+                        <p class="card-text">Senior TV Analyst and genre specialist, bringing nuanced perspectives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark border-0 text-white">
+                    <img src="https://image-service.usw2.wp-prod-us.cultureamp-cdn.com/AnXXW_gHdXyWsrD-vCvxcG3rwR0=/440x440/cultureampcom/production/b94/a47/9ea/b94a479eaece4ef09bda0e39/Sophia-Lee.jpeg" class="card-img-top"
+                        alt="Team Member" style="width: 416px; height: 400px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sophia Lee</h5>
+                        <p class="card-text">Editorial Director overseeing content quality and audience engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
+                    <p>FilmCritics Corporation</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
+                    <p><a href="./index.html">Home</a></p>
+                    <p><a href="./about.html">About</a></p>
+                    <p><a href="#">Services</a></p>
+                    <p><a href="./contact.html">Contact</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+                    <p><i class="fas fa-home mr-3"></i> Ho Chi Minh City, Vietnam</p>
+                    <p><i class="fas fa-envelope mr-3"></i> FilmCritics@example.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> +1234 5678</p>
+                    <p><i class="fas fa-print mr-3"></i> +1234 5678</p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
+                    <a href="https://www.facebook.com/rottentomatoes" class="btn btn-primary btn-floating m-1"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@rottentomatoes" class="btn btn-dark btn-floating m-1"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="https://twitter.com/RottenTomatoes" class="btn btn-info btn-floating m-1"><i
+                            class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>© 2024 Copyright: <a href="#" class="text-white"><strong>FilmCritics</strong></a></p>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <p>Designed by Lam Phong</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Back to top button -->
-  <div class="back-to-top-btn" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up fa-lg" style="color:#fff;"></i>
-  </div>
+    <div class="back-to-top-btn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up fa-lg" style="color:#fff;"></i>
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-  <script>
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>      
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
+
 </html>

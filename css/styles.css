@@ -77,7 +77,7 @@ button {
 
     /* Style the carousel item images */
     .carousel-item img {
-      height: 400px; 
+      height: 800px; 
       object-fit: cover;
     }
 
@@ -156,4 +156,20 @@ button {
   .carousel {
       width: 95%;  
   }
+}
+
+
+
+.div-custom {
+  margin: 0px !important;
+  padding: 10px 54px !important;
+}
+
+.navbar-custom {
+  padding: 0px !important;
+}
+
+.custom-login-link {
+  color: #fff !important;
+  font-size: 18px !important;
 }
