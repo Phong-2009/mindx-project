@@ -17,7 +17,9 @@ const chatbox = document.querySelector(".chatbox");
 
 let userMessage;
 //OpenAI Free APIKey
-
+const API_KEY = 
+    "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";
+    
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);

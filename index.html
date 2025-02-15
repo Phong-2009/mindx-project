@@ -23,7 +23,7 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png">
 </head>
 <style>
-    .movie-card {
+    /* .movie-card {
         position: relative;
         width: 200px;
         padding: 10px;
@@ -70,7 +70,7 @@
     .card {
         display: inline-block;
         text-align: center;
-    }
+    } */
 </style>
 
 <body style="background-color: rgb(20, 20, 20);">
@@ -91,9 +91,6 @@
                         </li>
                         <li class="nav-item">
                             <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight" href="https://www.fandango.com/movies-in-theaters?a=13036">SHOWTIMES</a>
                         </li>
                         <li class="nav-item" id="user-info">
                             <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
@@ -152,415 +149,29 @@
             </div>
         </div>
     </header>
-    <!-- Chatbot Toggle Button -->
-    <button style="border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;" class="chatBot" id="toggleChatBot">
-        <i class="fa-brands fa-rocketchat"></i>
-    </button>
-
-    <!-- Chatbot -->
-    <div id="chatBotContainer" class="chatBot" style="display: none;">
-        <header id="chatHeader">
-            <span alt="Close" id="cross" onclick="cancel()">X</span>
-        </header>
-        <ul class="chatbox">
-            <li class="chat-incoming chat">
-                <p>Hey! How can I assist you today?</p>
-            </li>
-        </ul>
-        <div class="chat-input">
-            <textarea rows="1" cols="17" placeholder="Enter a message..."></textarea>
-            <button id="sendBTN">Send</button>
-        </div>
-    </div>
-  
-
-    <!-- Carousel
-    <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-
-        Carousel Items
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="https://editorial.rottentomatoes.com/guide/best-scary-movies-for-kids/" target="_blank">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMzcyM2UwMDItY2EzMy00NGE0LWJmNGUtZjJmMmVkMjIxZjEzXkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-                        class="d-block w-100 carousel-img" alt="Slide 1">
-                </a>
-                <div class="carousel-caption">
-                    <h5>55 BEST KIDS HALLOWEEN MOVIES</h5>
-                    <p>PG and hard-G scary movies like Coraline, Nightmare before Christmas, Ghostbusters</p>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <a href="https://www.rottentomatoes.com/m/saturday_night_2024/videos/l1Yg24NXRVVO" target="_blank">
-                    <img src="https://img.nbc.com/files/2024-10/snl_s50-web-dynamiclead-desktop-1920x1080_1.jpg?impolicy=nbc_com&imwidth=1400&imdensity=1"
-                        class="d-block w-100 carousel-img" alt="Slide 2">
-                </a>
-                <div class="carousel-caption">
-                    <h5>WHAT TO WATCH THIS WEEK</h5>
-                    <p>Terrifier 3, Saturday Night, and more RT recommendations</p>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <a href="https://editorial.rottentomatoes.com/guide/best-90s-horror-movies/" target="_blank">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTgxNDkzMjg3OV5BMl5BanBnXkFtZTYwMzQ5ODA3._V1_QL75_UX820_.jpg"
-                        class="d-block w-100 carousel-img" alt="Slide 3">
-                </a>
-                <div class="carousel-caption">
-                    <h5>100 BEST '90S MOVIES</h5>
-                    <p>From the decade of <span style="font-style: italic;">Sixth Sense, Scream, Silence of the
-                            Lambs</span></p>
-                </div>
-            </div>
-        </div>
-
-        Controls
-        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div> -->
-
-    <!-- <section class="pt-5 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <h3 style="color: #fff;" class="mb-4">2024 HORROR FILMS</h3>
-                </div>
-                <div class="col-12">
-                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card bg-dark">
-                                            <img class="img-fluid"
-                                                src="https://m.media-amazon.com/images/M/MV5BNzc2MWUyYzctY2E4Ny00ZTlmLThjNTMtMTViZGI5NjcyN2EzXkEyXkFqcGc@._V1_FMjpg_UY2963_.jpg"
-                                                class="card-img-top img-fluid" alt="Terrifier 3">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Terrifier 3</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail1.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid"
-                                                src="https://m.media-amazon.com/images/M/MV5BODA2NDJlZTgtNTM2YS00ZGRiLTk3YTYtYzBkOGQzNDViNjgxXkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-                                                alt="Imaginary">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Imaginary</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail2.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Smile 2"
-                                                src="https://m.media-amazon.com/images/M/MV5BYTg5OTMyMGMtYzMwNC00NDMyLWE0OGUtMTQ1ODcwM2FjOTM4XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Smile 2</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Heretic"
-                                                src="https://m.media-amazon.com/images/M/MV5BNDZhNTMwOWYtNmM3ZC00OWJiLThkOTAtY2E3NTk2OWY4MmE2XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Heretic</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="The Platform 2"
-                                                src="https://m.media-amazon.com/images/M/MV5BNzI4YjkyODctMGJmNC00YjBjLTllNjAtNDkxNTJmZjg4MGZkXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">The Platform 2</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Nosferatu"
-                                                src="https://m.media-amazon.com/images/M/MV5BZGM1NWM0MWEtMTI3Yy00NTM2LTk5YzYtZjQzODc4YzQyYjMyXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Nosferatu</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="A Quiet Place: Day One"
-                                                src="https://m.media-amazon.com/images/M/MV5BNWI5MDI0ZmEtZDk2Ny00YThmLTkzMGMtMDQwMDNkM2E4YTFlXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">A Quiet Place: Day 1</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Speak No Evil"
-                                                src="https://m.media-amazon.com/images/M/MV5BMWI2OWFjNjgtOTQ2Zi00MjlmLTg2MGYtNmE4MjMyZjIzMDA0XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Speak No Evil</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Alien: Romulus"
-                                                src="https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Alien: Romulus</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Nightswim"
-                                                src="https://m.media-amazon.com/images/M/MV5BYWVhYWExNWQtMDBjZi00MWFiLTg3MjEtNWY0ZTUwZjZjYWRmXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Nightswim</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="I Saw the TV Glow"
-                                                src="https://m.media-amazon.com/images/M/MV5BZTA2MGM5M2ItNDBjYi00OWJhLTk1MTMtMGIzMDZlYzg1N2Q3XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">I Saw the TV Glow</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="The Inheritance"
-                                                src="https://m.media-amazon.com/images/M/MV5BMGMzMWVjOWEtNWU5YS00NmViLWI0MTQtNmJjZTQ0MjNmYTYzXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">The Inheritance</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center mt-5">
-                    <a class="btn btn-primary btn-lg mb-3 mx-1" href="#carouselExampleIndicators2" role="button"
-                        data-slide="prev">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                    <a class="btn btn-primary btn-lg mb-3 mx-1" href="#carouselExampleIndicators2" role="button"
-                        data-slide="next">
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="pt-5 pb-5">
-        <div class="container" style="flex-wrap: nowrap;">
-            <div class="row">
-                <div class="col-6">
-                    <h3 style="color: #fff;" class="mb-4">2025 MOVIES</h3>
-                </div>
-                <div class="col-12">
-                    <div id="carouselActionMovies" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid"
-                                                src="https://m.media-amazon.com/images/M/MV5BYjAwYWNjYzAtMmI3My00ZGFlLWJkODgtMTE2YjI3YWY0OWEwXkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-                                                alt="The Electric State">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">The Electric State</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail3.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid"
-                                                src="https://m.media-amazon.com/images/M/MV5BN2U1NTk2MmYtYWNlYi00NzdjLTg5YTEtNTY5MjYwYzM4OTk0XkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-                                                class="card-img-top img-fluid" alt="The Legend of Ochi">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">The Legend of Ochi</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail4.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid"
-                                                src="https://m.media-amazon.com/images/M/MV5BN2M1MWEyMTctMjBkYy00OTcyLTk4NzYtZWExZGI3Y2E3ODUwXkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-                                                alt="Wolf Man">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Wolf Man</h4>
-
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail2.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Halloween Aftermath"
-                                                src="https://m.media-amazon.com/images/M/MV5BYjNlZGM0ZjctMjk5ZS00NGI4LWE4NzMtOTAyN2E4MjZhYjMzXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Halloween</h4>
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="./detail3.html">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Karate Kid: Legends"
-                                                src="https://m.media-amazon.com/images/M/MV5BNTFmM2U2MzItMTMzOC00OWI2LWFlZjgtOGJhNTc5MzU5OTM2XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Karate Kid: Legends</h4>
-
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="A Minecraft Movie"
-                                                src="https://m.media-amazon.com/images/M/MV5BZGRlZDY2MmItNDA3NS00YWUzLTg1Y2UtZjVlMWU1Njg2MDUyXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">A Minecraft Movie</h4>
-
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="Snow White"
-                                                src="https://m.media-amazon.com/images/M/MV5BZTQ1OTliZWItMzE5Zi00YzA5LTgzN2ItZjA5MjQ1ZGU3YjE2XkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">Snow White</h4>
-
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card">
-                                            <img class="img-fluid" alt="The Monkey"
-                                                src="https://m.media-amazon.com/images/M/MV5BNzZhMTc5MWUtOTE2MS00MjUwLTljYWEtYTk1ZmVjNzhmMzYzXkEyXkFqcGc@._V1_QL75_UX820_.jpg">
-                                            <div class="card-body bg-black">
-                                                <h4 class="card-title text-light">The Monkey</h4>
-
-                                                <button type="button" class="btn btn-warning"><a class="a-tag"
-                                                        href="">Click here</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center mt-5">
-                    <a class="btn btn-success btn-lg mb-3 mx-1" href="#carouselActionMovies" role="button"
-                        data-slide="prev">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                    <a class="btn btn-success btn-lg mb-3 mx-1" href="#carouselActionMovies" role="button"
-                        data-slide="next">
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-        </div>
-        </div>
-    </section> -->
-
-      <div class="navbar">
+    <div class="backdrop">
+        <img src="./assets/loading.svg" alt="" />
       </div>
+      <div class="navbar">
+        <a
+          href="./index.html"
+          style="
+            width: auto;
+            font-size: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+              sans-serif;
+          "
+        >
+        </a>
+        <div style="display: flex; gap: 15px">
+          <div id="avatar-action-container"></div>
+        </div>
+      </div>
+
+
+    
+  
+      
       <div class="hero-section">
         <img
           id="hero-image"
@@ -571,19 +182,19 @@
   
         <div class="hero-section-info">
           <div>
-            <p id="hero-title" class="hero-section-info-title"></p>
+            <p id="hero-title" class="text-light hero-section-info-title"></p>
             <p
               id="hero-description"
-              class="hero-section-info-description multiline-ellipsis-4"
+              class="text-light hero-section-info-description multiline-ellipsis-4"
             ></p>
             <div class="action-buttons-container">
-              <a id="watch-now-btn" class="btn">
+              <a id="watch-now-btn" href="./watch.html" class="btn">
                 <i class="fa-regular fa-circle-play"></i>
-                <span>Watch Now</span>
+                <span class="text-light">Watch Now</span>
               </a>
-              <a id="view-info-btn" class="btn">
+              <a id="view-info-btn" href="./info.html" class="btn">
                 <i class="fa-solid fa-circle-info"></i>
-                <span>View Info</span>
+                <span class="text-light">View Info</span>
               </a>
             </div>
           </div>
@@ -597,8 +208,8 @@
           />
         </div>
       </div>
-  
-      <main></main>
+      
+      <main class="text-light"></main>
 
     <!-- Footer -->
     <footer id="footer" class="bg-dark text-white pt-5 pb-4">
@@ -735,7 +346,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script src="./scripts/chatbot.js" defer></script>
+    
     <script>
         window.embeddedChatbotConfig = {
             chatbotId: "PBO4TDC3PYUL4mJnW5oja",
