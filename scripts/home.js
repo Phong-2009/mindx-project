@@ -45,30 +45,27 @@ import { TMDB_API_KEY } from "./config.js";
   document.querySelector("#view-info-btn").href = `./info.html?id=${main.id}`;
 
   Object.keys(data).map((key, index) => {
-    document.querySelector("main").innerHTML += /*html*/ `
+    document.querySelector("#api_row").innerHTML += /*html*/ `    
     <div class="section">
-      <h2>${key}</h2>
+      <h2 style="color: #fff;">${key}</h2>
 
       <div class="swiper-${index} swiper">
         <div class="swiper-wrapper">
           ${data[key]
             .map(
               (item) => /*html*/ `
-          <a href="./info.html?id=${
-            item.id
-          }" class="swiper-slide" style="width: 200px !important">
-            <div class="movie-card">
-              <img
-                class="fade-in"
-                onload="this.style.opacity = '1'"
-                src="https://image.tmdb.org/t/p/w200${item.poster_path}"
-                alt=""
-              />
-              <p class="multiline-ellipsis-2">
-                ${item.title || item.name}
-              </p>
+          
+              <div class="col-md-3 mb-3">
+            <div class="card bg-dark">
+              <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${item.poster_path}" class="card-img-top img-fluid" alt="${item.title || item.name}">
+              <div class="card-body bg-black">
+                <h4 class="card-title text-light">${item.title || item.name}</h4>
+                <button type="button" class="btn btn-warning">
+                  <a class="a-tag" href="./info.html?id=${item.id}">Click here</a>
+                </button>
+              </div>
             </div>
-          </a>
+          </div>
         `
             )
             .join("\n")} 
@@ -78,7 +75,8 @@ import { TMDB_API_KEY } from "./config.js";
       </div>
     </div>
     `;
-  });
+});
+
 
   document.querySelector(".backdrop").classList.add("backdrop-hidden");
 
@@ -96,3 +94,4 @@ import { TMDB_API_KEY } from "./config.js";
     });
   });
 })();
+

@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  // Section 1: Bootstrap Carousel (no Slick, Bootstrap only)
+  
   $('#bootstrapCarousel1').carousel({
-    interval: 2000, // 2 seconds between slides
+    interval: 2000, 
     wrap: true // Enables continuous cycling
   });
 

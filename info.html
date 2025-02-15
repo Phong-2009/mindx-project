@@ -97,84 +97,9 @@
         </div>
       </nav>
 
-      <div class="container-fluid container-3 px-5">
-        <div class="d-flex justify-content-between align-items-center">
-          <!-- Left Section: Trending Links -->
-          <ul class="navbar-nav d-flex flex-row">
-            <li class="nav-item">
-              <a id="RT" class="nav-link p-2 bd-highlight" href="#"
-                >TRENDING ON RT</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://editorial.rottentomatoes.com/rt-hub/hispanic-heritage/"
-                >Hispanic Heritage Month</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://editorial.rottentomatoes.com/hub-subpage/horror-season/"
-                >Spooky Season</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://editorial.rottentomatoes.com/article/movie-re-releases-calendar/"
-                >Movie Re-Release Calendar</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://editorial.rottentomatoes.com/article/tv-premiere-dates-2024/"
-                >TV Premiere Dates</a
-              >
-            </li>
-          </ul>
-
-          <!-- Right Section: Social Media Links -->
-          <ul class="navbar-nav d-flex flex-row">
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://www.facebook.com/rottentomatoes"
-              >
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://www.instagram.com/rottentomatoes/"
-              >
-                <i class="fa-brands fa-instagram"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://www.tiktok.com/@rottentomatoes"
-              >
-                <i class="fa-brands fa-tiktok"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link p-2 bd-highlight"
-                href="https://www.youtube.com/user/rottentomatoes"
-              >
-                <i class="fa-brands fa-youtube"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      
     </header>
-    <div class="backdrop">
+    <!-- <div class="backdrop">
       <img src="./assets/loading.svg" alt="" />
     </div>
     <div class="navbar">
@@ -191,9 +116,54 @@
       <div style="display: flex; gap: 15px">
         <div id="avatar-action-container"></div>
       </div>
-    </div>
+    </div> -->
 
+    <main>
+      <div class="background-img"></div>
+      <div class="banner-container">
+        <div class="banner-preview-img-container">
+          <img
+            id="preview-img"
+            onload="this.style.opacity = '1'"
+            class="fade-in"
+            alt=""
+          />
+        </div>
+        <div class="banner-info-container">
+          <div class="banner-info-action-btn">
+            <a style="display: inline-block" id="watch-now-btn" class="btn">
+              <i class="fa-regular fa-circle-play" style="color: #fff;"></i>
+              <span style="color: #fff;">Watch Now</span>
+            </a>
+          </div>
+          <p id="movie-title" style="font-size: 36px; color:#fff; line-height: 40px"></p>
+          <p
+            id="movie-description"
+            style="color: #fff; font-size: 18px; line-height: 28px; text-align: justify"
+          ></p>
+          <p style="color: #fff;" id="release-date"></p>
 
+          <div style="color: #fff;" id="genres"></div>
+        </div>
+      </div>
+      <div class="casts-container">
+        <h1
+          style="
+            font-size: 24px;
+            line-height: 32px;
+            margin: 32px 0;
+            font-weight: 500;
+            color: white;
+          "
+        >
+          Casts
+        </h1>
+
+        <div class="casts-grid" style="color: #fff;"></div>
+      </div>
+
+      
+    </main>
 
 
     <!-- Footer -->
@@ -289,9 +259,7 @@
       </div>
     </footer>
 
-    <div class="back-to-top-btn" onclick="scrollToTop()">
-      <i class="fas fa-arrow-up" style="color: #fff"></i>
-    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -299,10 +267,6 @@
 
     <script>
       function scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
 
         const carousel = document.querySelector(".carousel");
         const carouselItems = document.querySelectorAll(".carousel-item");
