@@ -65,7 +65,7 @@ import { TMDB_API_KEY } from "./config.js";
    </div>
    
    <div class="row">
-    <div class="col-12 text-center mt-5">
+    <div class="col-12 text-center mt-2">
         <a class="btn btn-primary btn-lg mb-3 mx-1" href="#${carouselId}" role="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
             <i class="fa fa-arrow-left"></i>
         </a>
@@ -92,7 +92,7 @@ import { TMDB_API_KEY } from "./config.js";
       chunk.forEach(item => {
         slideHTML += `
           <div class="col-md-3 mb-3">
-              <div class="card bg-dark">
+              <div class="card bg-black">
             <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${item.poster_path}" class="card-img-top img-fluid" alt="${item.title || item.name}">
             <div class="card-body card-test">
                 <h4 class="card-title text-light card-title-test">${item.title || item.name}</h4>

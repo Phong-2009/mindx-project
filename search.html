@@ -4,12 +4,12 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNJX66Z0YF"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-VNJX66Z0YF');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-VNJX66Z0YF');
     </script>
+    <link rel="stylesheet" href="css/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film Search</title>
@@ -31,7 +31,6 @@
         
         .movie-card {
             position: relative;
-            width: 200px;
             padding: 10px;
             text-align: center;
         }
@@ -119,16 +118,55 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background-color: white; /* Optional: Card background */
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        button {
-            background-color: #f2c60f; /* Your button color */
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            width: 100%;
+            height: auto;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-warning {
+            background-color: #f2c60f;
             color: black;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
-            margin-top: auto; /* To push the button to the bottom of the card */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0b50d;
+        }
+
+        .a-tag {
+            color: black;
+            text-decoration: none;
+        }
+
+        .a-tag:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -158,10 +196,9 @@
     </nav>
 </header>
 
-<h4 class="text-light justify-content-center mt-3">Find your movies and tv shows</h4>
 <div class="search-container d-flex justify-content-center align-items-center">
-    <input type="text" id="search-input" placeholder="Search for a film...">
-    <button onclick="searchFilms()">Search</button>
+    <input class="form-control me-2" type="search" id="search-input" placeholder="Search for a film...">
+    <button type="submit" class="btn btn-warning" onclick="searchFilms()">Search</button>
 </div>
 <div class="results" id="results"></div>
 
@@ -193,7 +230,7 @@
             </div>
             
             <div class="row">
-                <div class="col-12 text-center mt-5">
+                <div class="col-12 text-center mt-2">
                     <a class="btn btn-primary btn-lg mb-3 mx-1" href="#${carouselId}" role="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
                         <i class="fa fa-arrow-left"></i>
                     </a>
@@ -220,12 +257,15 @@
             chunk.forEach(film => {
                 slideHTML += `
                     <div class="col-md-3 mb-3">
-                        <div class="card bg-dark">
-                            <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${film.poster_path}" class="card-img-top img-fluid" alt="${film.title}">
-                            <div class="card-body">
-                                <h4 class="card-title text-light">${film.title}</h4>
+                        <div class="card bg-black">
+                            <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${film.poster_path}" alt="${film.title}">
+                            <div class="card-body card-test">
+                                <h4 class="card-title text-light card-title-test">${film.title}</h4>
                                 <button type="button" class="btn btn-warning">
-                                    <a style="text-decoration: none;" class="a-tag text-dark" href="./info.html?id=${film.id}">Click here</a>
+                                    <a class="a-tag" href="./info.html?id=${film.id}">Click here</a>
+                                </button>
+                                <button type="button" class="btn btn-success greenButton">
+                                    <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-cart-shopping"></i></a>
                                 </button>
                             </div>
                         </div>
