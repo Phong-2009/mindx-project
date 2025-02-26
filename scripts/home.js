@@ -91,17 +91,20 @@ import { TMDB_API_KEY } from "./config.js";
       // Append each item inside the chunk
       chunk.forEach(item => {
         slideHTML += `
-                <div class="col-md-3 mb-3">
-                    <div class="card bg-dark">
-                        <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${item.poster_path}" class="card-img-top img-fluid" alt="${item.title || item.name}">
-                        <div class="card-body bg-black">
-                            <h4 class="card-title text-light">${item.title || item.name}</h4>
-                            <button type="button" class="btn btn-warning">
-                                <a class="a-tag text-dark" href="./detail1.html">Click here</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>`;
+          <div class="col-md-3 mb-3">
+              <div class="card bg-dark">
+            <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${item.poster_path}" class="card-img-top img-fluid" alt="${item.title || item.name}">
+            <div class="card-body card-test">
+                <h4 class="card-title text-light card-title-test">${item.title || item.name}</h4>
+                <button type="button" class="btn btn-warning">
+                  <a class="a-tag text-dark" href="./info.html?id=${item.id}">Click here</a>
+                </button>
+                <button type="button" class="btn btn-success greenButton">
+                  <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-cart-shopping"></i></a>
+                </button>    
+            </div>
+              </div>
+          </div>`;
       });
 
       slideHTML += `</div></div>`;

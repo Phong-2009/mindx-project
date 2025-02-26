@@ -25,9 +25,5 @@ if (localStorage.getItem("currentUser")) {
     </div>
   `;
 } else {
-  document.querySelector("#avatar-action-container").innerHTML += /*html*/ `
-    <a style="font-size: 25px" href="./login.html">
-      <i class="fa-solid fa-right-to-bracket"></i>
-    </a>
-  `;
+  
 }
