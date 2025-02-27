@@ -1,73 +1,36 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//     const greenButton = document.getElementById("greenButton");
-
-//     greenButton.addEventListener("click", () => {
-//         cartCountLabel = document.getElementById("cartCount");
-//         let count = 0;
-//         greenButton.onclick = function() {
-//             count++;
-//             cartCountLabel.innerHTML = count;
-//             alert("Item added to cart!");
-//         };
-        
-
-//         alert("Item added to cart!");
-//     });
-// });
-
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const greenButton = document.getElementById("greenButton");
-
-//     const cartCount = document.getElementById("cartCount");
-//     let count = 0;
-//     greenButton.onclick = function() {
-//     count++;
-//     cartCount.innerHTML = count;
-//     alert("Item added to cart!");
-// };
-
 document.addEventListener("DOMContentLoaded", function () {
-    // save film name, film price, film image, film id
+    // save film name, film description, film image
     const greenButtons = document.getElementsByClassName("greenButton");
     const cartCountElement = document.getElementById("cartCount");
-    let cartCount = 0;
-    if (greenButtons) {
+    let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+    cartCountElement.innerHTML = cartCount;
+
+    if (greenButtons.length > 0) {
         for (let i = 0; i < greenButtons.length; i++) {
             greenButtons[i].addEventListener("click", function () {
-                cartCount++;
-                cartCountElement.innerHTML = cartCount;
-                alert("Item added to cart!");
+                const filmCard = greenButtons[i].closest('.card');
+                const filmTitle = filmCard.querySelector('.card-title').innerText;
+                const filmDescription = filmCard.querySelector('.card-description').innerText;
+                const filmImage = filmCard.querySelector('img').src;
 
-                // localStorage.setItem();
+                const film = {
+                    title: filmTitle,
+                    description: filmDescription,
+                    image: filmImage
+                };
+
+                // Save film details to localStorage
+                let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
+                selectedFilms.push(film);
+                localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
+
+                cartCount++;
+                localStorage.setItem('cartCount', JSON.stringify(cartCount));
+                cartCountElement.innerHTML = cartCount;
+                alert("You have selected a film for later!");
             });
         }
     } else {
         console.log("No green buttons found");
     }
 });
-
-
-// id = cartCount
-
-// const decreaseBtn = document.getElementById("decreaseBtn");
-// const resetBtn = document.getElementById("resetBtn");
-// const increaseBtn = document.getElementById("increaseBtn");
-// const countLabel = document.getElementById("countLabel");
-
-// let count = 0;
-// increaseBtn.onclick = function(){
-//     count++;
-//     countLabel.textContent = count;
-// }
-
-// decreaseBtn.onclick = function(){
-//     count--;
-//     countLabel.textContent = count;
-// }
-
-// resetBtn.onclick = function(){
-//     count = 0;
-//     countLabel.textContent = count;
-// }

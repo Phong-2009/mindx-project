@@ -65,21 +65,7 @@ button {
   color: #fff;
 }
 
-.back-to-top-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #FA320A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  cursor: pointer;
-}
+
 .card:hover {
   transform: translateY(-10px);
 }

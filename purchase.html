@@ -23,9 +23,14 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png">
 </head>
 <style>
+    html, body {
+    overflow-x: hidden;
+}
 </style>
-<body style="background-color: rgb(20, 20, 20);">
-    <header>
+
+<body style="width: 100%; background-color: rgb(20, 20, 20);">
+    <!-- Header -->
+    <header style="width:100%; margin: 0;">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
             <div class="container-fluid container-2 div-custom">
                 <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem;">FilmCritics®</a>
@@ -35,6 +40,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-lg-0">
                         <li class="nav-item">
+                            <a id="text" class="nav-link p-2 bd-highlight "href="./purchase.html">Cart (<span id="cartCount">0</span>)</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="./search.html">
                                 <i style="color: #fff; font-size: 20px;" class="fa-solid fa-magnifying-glass"></i>
                             </a>
@@ -43,24 +51,109 @@
                             <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
                         </li>
                         <li class="nav-item" id="user-info">
-                            <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>                       
+                            <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+                            <div id="avatar-action-container"></div>
                         </li>
                         
                     </ul>
                 </div>
             </div>
-        </nav>         
-    </header>               
+        </nav>
+         
+    </header>
+
+    <div style="color:#fff;" id="selected-films"></div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
+                    <p>FilmCritics Corporation</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
+                    <p><a href="./index.html" class="text-white" style="text-decoration: none;">Home</a></p>
+                    <p><a href="./about.html" class="text-white" style="text-decoration: none;">About</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Services</a></p>
+                    <p><a href="./contact.html" class="text-white" style="text-decoration: none;">Contact</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+                    <a href="location.html" style="text-decoration: none; color:#fff">
+                        <i class="fas fa-home mr-3"></i> Ho Chi Minh City, Vietnam
+                    </a>
+                    <p><i class="fas fa-envelope mr-3"></i>FilmCritics@example.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> +1234 5678</p>
+                    <p><i class="fas fa-print mr-3"></i> +1234 5678</p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
+                    <a href="https://www.facebook.com/rottentomatoes" class="btn btn-primary btn-floating m-1"
+                        style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@rottentomatoes" class="btn btn-floating m-1"
+                        style="background-color: #000; color: #fff;"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://twitter.com/RottenTomatoes?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                        class="btn btn-info btn-floating m-1" style="background-color: #55acee;"><i
+                            class="fab fa-twitter"></i></a>
+                </div>
+
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>© 2024 Copyright: <a href="#" style="text-decoration: none;"><strong
+                                class="text-white">FilmCritics</strong></a></p>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <p>Designed by Lam Phong</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectedFilmsContainer = document.getElementById('selected-films');
+            const selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
+
+            if (selectedFilms.length === 0) {
+                selectedFilmsContainer.innerHTML = '<p>No films selected.</p>';
+            } else {
+                selectedFilms.forEach(film => {
+                    const filmElement = document.createElement('div');
+                    filmElement.classList.add('film');
+
+                    filmElement.innerHTML = `
+                        <h2>${film.title}</h2>
+                        <p>${film.description}</p>
+                        <img src="${film.image}" alt="${film.title}">
+                    `;
+
+                    selectedFilmsContainer.appendChild(filmElement);
+                });
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    
+ 
+    <script src="./scripts/purchase.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    
-    <script>
-        window.embeddedChatbotConfig = {
-            chatbotId: "PBO4TDC3PYUL4mJnW5oja",
-            domain: "www.chatbase.co",
-        };
     </script>
     <script
         src="https://www.chatbase.co/embed.min.js"
@@ -70,7 +163,7 @@
     ></script>
     <script src="./scripts/main.js" defer></script>
     <script type="module" src="./scripts/config.js"></script>
-    <!-- <script type="module" src="./scripts/home.js"></script> -->
+    <script type="module" src="./scripts/home.js"></script>
 </body>
 
 </html>
