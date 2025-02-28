@@ -68,23 +68,43 @@ const labels = ["data", "casts", "similar"];
       .join("");
 
   if (result.casts) {
-    document.querySelector(".casts-grid").innerHTML = result.casts
+    document.querySelector(".casts-carousel .swiper-wrapper").innerHTML = result.casts
       .map(
         (item) => /*html*/ `
-          <div>
-            <img
-              onload="this.style.opacity = '1'"
-              class="fade-in"
-              src="https://image.tmdb.org/t/p/w200${item.profile_path}"
-              alt=""
-            />
-            <p style="text-align: center">${item.name}</p>
-            <p style="text-align: center; color: var(--orange)">${item.character}</p>
+          <div class="swiper-slide">
+            <div style="text-align: center;">
+              <img
+                onload="this.style.opacity = '1'"
+                class="fade-in"
+                src="https://image.tmdb.org/t/p/w200${item.profile_path}"
+                alt="${item.name}"
+                style="border-radius: 10px; width: 100%; max-width: 150px;"
+              />
+              <p style="color: #fff; margin-top: 10px">${item.name}</p>
+              <p style="color: #fff">${item.character}</p>
+            </div>
           </div>
         `
       )
       .join("");
   }
+  
+  // Initialize Swiper
+  const swiper = new Swiper(".casts-carousel", {
+    loop: true,
+    spaceBetween: 20,
+    slidesPerView: 3,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1440: { slidesPerView: 5 },
+    },
+  });
+  
 
   if (result.similar && result.similar.length > 0)
     document.querySelector("#similar").innerHTML += /*html*/ `
