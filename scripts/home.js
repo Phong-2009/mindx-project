@@ -20,10 +20,6 @@ import { TMDB_API_KEY } from "./config.js";
     )
   );
 
-  fetch(`https://api.themoviedb.org/3${HomeAPIRoutes["Trending Movies"].url}?api_key=${TMDB_API_KEY}`)
-    .then((response) => response.json())
-  // .then(data => console.log(data));
-
   const data = promises.reduce((final, current, index) => {
     final[Object.keys(HomeAPIRoutes)[index]] = current.results;
     return final;
@@ -43,7 +39,6 @@ import { TMDB_API_KEY } from "./config.js";
   document.querySelector("#hero-description").innerText = main.overview;
   document.querySelector("#watch-now-btn").href = `./watch.html?id=${main.id}`;
   document.querySelector("#view-info-btn").href = `./info.html?id=${main.id}`;
-
 
   Object.keys(data).map((key, index) => {
     const container = document.querySelector("#api_container");
@@ -100,7 +95,7 @@ import { TMDB_API_KEY } from "./config.js";
                   <a class="a-tag text-dark" href="./info.html?id=${item.id}">Click here</a>
                 </button>
                 <button type="button" class="btn btn-success greenButton">
-                  <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
                 </button>    
             </div>
               </div>
@@ -110,6 +105,49 @@ import { TMDB_API_KEY } from "./config.js";
       slideHTML += `</div></div>`;
       carouselInner.innerHTML += slideHTML;
     }
+
+    // Add event listeners for green buttons
+    const greenButtons = document.getElementsByClassName("greenButton");
+    const cartCountElement = document.getElementById("cartCount");
+    let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+    cartCountElement.innerHTML = cartCount;
+
+    if (greenButtons.length > 0) {
+      for (let i = 0; i < greenButtons.length; i++) {
+        greenButtons[i].addEventListener("click", function () {
+          const filmCard = greenButtons[i].closest('.card');
+          const filmTitle = filmCard.querySelector('.card-title').innerText;
+          const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';
+          const filmImage = filmCard.querySelector('img').src;
+          const filmId = filmCard.querySelector('a.a-tag').href.split('id=')[1];
+
+          const film = {
+            id: filmId,
+            title: filmTitle,
+            description: filmDescription,
+            image: filmImage
+          };
+
+          // Check if the film is already selected
+          let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
+          const filmExists = selectedFilms.some(f => f.id === filmId);
+
+          if (filmExists) {
+            alert("This film is already in your wishlist!");
+          } else {
+            // Save film details to localStorage
+            selectedFilms.push(film);
+            localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
+
+            cartCount++;
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+            cartCountElement.innerHTML = cartCount;
+            alert("You have selected a film for later!");
+          }
+        });
+      }
+    } else {
+      console.log("No green buttons found");
+    }
   });
 })();
-
