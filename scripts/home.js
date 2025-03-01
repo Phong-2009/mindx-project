@@ -115,6 +115,14 @@ import { TMDB_API_KEY } from "./config.js";
     if (greenButtons.length > 0) {
       for (let i = 0; i < greenButtons.length; i++) {
         greenButtons[i].addEventListener("click", function () {
+          // Check if the user is logged in
+          const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+          if (!isLoggedIn) {
+            alert("You need to log in to select a film.");
+            window.location.href = './login.html';
+            return;
+          }
+
           const filmCard = greenButtons[i].closest('.card');
           const filmTitle = filmCard.querySelector('.card-title').innerText;
           const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';

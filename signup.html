@@ -131,9 +131,10 @@
 
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
         console.log(users)
         alert('User registered successfully');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 </script>
 

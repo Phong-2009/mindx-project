@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FilmCritics | Login</title>
@@ -21,8 +21,8 @@
       href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png"
       type="image/png"
     />
-  </head>
-  <body>
+</head>
+<body>
     <!-- Add Bootstrap CSS -->
     <section class="bg-black min-vh-100 d-flex align-items-center">
       <div class="container">
@@ -85,9 +85,7 @@
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <!-- <input class="btn btn-primary btn-lg" type="submit" onclick="logIn()">
-                          Log in now -->
-                          <input
+                        <input
                           class="btn btn-primary btn-lg"
                           type="submit"
                           onclick="logIn()"
@@ -129,6 +127,7 @@
         let users = JSON.parse(localStorage.getItem('users')) || [];
         for (let i = 0; i < users.length; i++) {
             if (users[i].email === email && users[i].password === password) {
+                localStorage.setItem('isLoggedIn', JSON.stringify(true));
                 localStorage.setItem('loggedInUser', JSON.stringify(users[i].first_name + ' ' + users[i].last_name));
                 alert('Logged in successfully');
                 window.location.href = 'index.html';
