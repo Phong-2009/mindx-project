@@ -92,7 +92,7 @@ import { TMDB_API_KEY } from "./config.js";
             <div class="card-body card-test">
                 <h4 class="card-title text-light card-title-test">${item.title || item.name}</h4>
                 <button type="button" class="btn btn-warning">
-                  <a class="a-tag text-dark" href="./info.html?id=${item.id}">Click here</a>
+                  <a class="a-tag text-dark click-here" href="./info.html?id=${item.id}">Click here</a>
                 </button>
                 <button type="button" class="btn btn-success greenButton">
                   <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
@@ -104,6 +104,41 @@ import { TMDB_API_KEY } from "./config.js";
 
       slideHTML += `</div></div>`;
       carouselInner.innerHTML += slideHTML;
+    }
+    // Add event listeners for search button
+    const searchButton = document.getElementById("search-button");
+    if (searchButton.length > 0) {
+      for (let i = 0; i < clickHereButtons.length; i++) {
+        clickHereButtons[i].addEventListener("click", function () {
+          // Check if the user is logged in
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              //  User is logged in
+              console.log("Logged in as:", user.email); 
+            } else {
+              // Not logged in
+              alert("You need to log in to view film details.");
+              window.location.href = "./login.html";
+            }
+          });
+        });
+      }
+    }
+    // Add evevnt listeners for click here buttons
+    const clickHereButtons = document.getElementsByClassName("click-here");
+    
+    if (clickHereButtons.length > 0) {
+      for (let i = 0; i < clickHereButtons.length; i++) {
+        clickHereButtons[i].addEventListener("click", function () {
+          // Check if the user is logged in
+          const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+          if (!isLoggedIn) {
+            alert("You need to log in to view film details.");
+            window.location.href = './login.html';
+            return;
+          }
+        });
+      }
     }
 
     // Add event listeners for green buttons
