@@ -22,4 +22,3 @@ export const db = getFirestore(app);
 export const storage = getStorage(app);
 // Initialize Cloud Storage and get a reference to the service
 export const docRef = doc(db, "users", "userId"); // Replace with your document ID
-// Set the document data

@@ -36,8 +36,8 @@
               <li class="nav-item">
                 <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
               </li>
-              <li class="nav-item" id="user-info">
-                <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+              <li class="nav-item" id="user-confirm">
+                <a class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
                 <div id="avatar-action-container"></div>
               </li>
             </ul>
@@ -51,24 +51,13 @@
         <h2 class="text-white">Subscription</h2>
         <div class="row">
           <div class="col-md-6 col-12">
-              <form action="" id="balance-form">
+              <form id="balance-form">
                   <div class="form-group mt-2 text-white">
-                      <label for="">Username</label>
-                      <input type="text" class="form-control" id="username" required>
-                  </div>
-                  
-                  <div class="form-group mt-2 text-white">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" id="password" required>
-                  </div>
-
-                  <div class="form-group mt-2 text-white">
-                      <label for="">Số tiền</label>
-                      <input type="number" class="form-control" id="amount" required min="0">
+                      <input type="number" class="form-control" placeholder="$100000" id="amount" required min="0">
                   </div>
 
                   <div class="form-group mt-2">
-                      <button type="submit" class="btn btn-primary">Xác nhận</button>
+                      <button type="submit" class="btn btn-primary">Confirm</button>
                   </div>
               </form>
           </div>
@@ -89,37 +78,19 @@
             <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
             <p>FilmCritics Corporation</p>
           </div>
-
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
             <p>
-              <a
-                href="./index.html"
-                class="text-white"
-                style="text-decoration: none"
-                >Home</a
-              >
+              <a href="./index.html" class="text-white" style="text-decoration: none">Home</a>
             </p>
             <p>
-              <a
-                href="./about.html"
-                class="text-white"
-                style="text-decoration: none"
-                >About</a
-              >
+              <a href="./about.html" class="text-white" style="text-decoration: none">About</a>
             </p>
             <p>
-              <a href="#" class="text-white" style="text-decoration: none"
-                >Services</a
-              >
+              <a href="#" class="text-white" style="text-decoration: none">Services</a>
             </p>
             <p>
-              <a
-                href="./contact.html"
-                class="text-white"
-                style="text-decoration: none"
-                >Contact</a
-              >
+              <a href="./contact.html" class="text-white" style="text-decoration: none">Contact</a>
             </p>
           </div>
 
@@ -174,10 +145,6 @@
       </div>
     </footer>
 
-    <script type="module" src="scripts/home.js"></script>
-    <script>
-      
-    </script>
     <script>
         // document.addEventListener("DOMContentLoaded", function () {
         //     const selectedFilmsContainer = document.getElementById('selected-films');
@@ -188,7 +155,7 @@
 
         //     if (loggedInUser) {
         //         userNameElement.innerText = `Welcome, ${loggedInUser}`;
-        //         document.getElementById('user-info').innerHTML = `
+        //         document.getElementById('user-confirm').innerHTML = `
         //             <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">
         //                 ${loggedInUser}
         //             </a>
@@ -246,6 +213,6 @@
         //     });
         // });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="scripts/purchase.js"></script>
 </body>
 </html>

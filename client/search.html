@@ -211,7 +211,7 @@
                   >About FilmCritics®</a
                 >
               </li>
-              <li class="nav-item" id="user-info">
+              <li class="nav-item" id="user-confirm">
                 <a
                   id="text"
                   class="nav-link p-2 bd-highlight custom-login-link"
@@ -339,7 +339,7 @@
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
         if (loggedInUser) {
-            document.getElementById('user-info').innerHTML = `
+            document.getElementById('user-confirm').innerHTML = `
                 <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">
                     ${loggedInUser}
                 </a>

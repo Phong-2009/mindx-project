@@ -1,51 +1,68 @@
 import { auth, db } from './firebase-config.js';
+// import { signOut, deleteUser } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+import { getFirestore, doc, getDoc, setDoc  } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
-// import { getDoc, collection, addDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-const result = document.getElementById('result');
 const logOut = document.getElementById('log-out');
 const form = document.querySelector('#form');
 
 let user = null; //  Make user global
-
 const handleLogin = async (e) => {
   e.preventDefault();
   const email = form.email.value;
   const password = form.password.value;
-
+  
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    user = userCredential.user;
 
-    user = auth.currentUser; // 👈 Save logged in user
+    // Get Firestore user doc using UID
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
 
-    if (user !== null) {
-      const email = user.email;
-      const uid = user.uid;
-      console.log("User is logged in:", email, uid);
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      console.log("User data:", userData);
+      alert(`Welcome back, ${userData.firstName} ${userData.lastName}!`);
+
+
+      await setDoc(docRef, userData);
+      
+      // document.getElementById('user-confirm').innerHTML = `
+      //   <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
+      //   <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+      // `;
+
+      window.location.href = "purchase.html"; 
+    } else {
+      console.log("No user data found in Firestore.");
     }
 
-    alert("You are now logged in!");
-
-  //   const userData = {
-  //     email,
-  //     uid: user.uid,
-  //     createdAt: new Date()
-  // };
-  //   const docRef = await addDoc(collection(db, "users"), userData);
-  //   const userDoc = getDoc(docRef);
-  //   if (userDoc.exists(user)) {
-  //     document.getElementById("user-name").textContent = user.first_name + " " + user.last_name;
-  //   } else {
-  //     alert("User not found in database.");
-  //   }
-
-    window.location.href = 'purchase.html'; // Redirect to home page
   } catch (error) {
-      alert("Login failed: " + error.message);
+    alert("Login failed: " + error.message);
   }
 };
 
+// const handleLogOut = async (e) => {
+//   e.preventDefault();
 
+//   try {
+//     if (user) {
+//       await deleteUser(user); // Delete user first while logged in
+//       console.log("User deleted successfully");
+//     }
+    
+//     await signOut(auth); // Then sign out
+//     result.innerHTML = '';
+//     logOut.style.display = 'none';
+//     alert("You are now logged out!");
+//     window.location.href = 'register.html';
+//   } catch (error) {
+//       alert("Logout or delete failed: " + error.message);
+//       console.log("Logout error: ", error);
+//   }
+// };
 
+// logOut.addEventListener('click', handleLogOut);
 form.addEventListener('submit', handleLogin);
 
 // If already logged in, redirect to home page

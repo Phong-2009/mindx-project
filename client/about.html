@@ -84,7 +84,7 @@
                         <li class="nav-item">
                             <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
                         </li>
-                        <li class="nav-item" id="user-info">
+                        <li class="nav-item" id="user-confirm">
                             <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
                         </li>
                     </ul>
@@ -241,7 +241,7 @@
             const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
             if (loggedInUser) {
-                document.getElementById('user-info').innerHTML = `
+                document.getElementById('user-confirm').innerHTML = `
                     <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="./index.html">
                         ${loggedInUser}
                     </a>

@@ -131,12 +131,16 @@ import { TMDB_API_KEY } from "./config.js";
       for (let i = 0; i < clickHereButtons.length; i++) {
         clickHereButtons[i].addEventListener("click", function () {
           // Check if the user is logged in
-          const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-          if (!isLoggedIn) {
-            alert("You need to log in to view film details.");
-            window.location.href = './login.html';
-            return;
-          }
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              //  User is logged in
+              console.log("Logged in as:", user.email); 
+            } else {
+              // Not logged in
+              alert("You need to log in to view film details.");
+              window.location.href = "./login.html";
+            }
+          });
         });
       }
     }
@@ -152,11 +156,16 @@ import { TMDB_API_KEY } from "./config.js";
         greenButtons[i].addEventListener("click", function () {
           // Check if the user is logged in
           const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-          if (!isLoggedIn) {
-            alert("You need to log in to select a film.");
-            window.location.href = './login.html';
-            return;
-          }
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              //  User is logged in
+              console.log("Logged in as:", user.email); 
+            } else {
+              // Not logged in
+              alert("You need to log in to view film details.");
+              window.location.href = "./login.html";
+            }
+          });
 
           const filmCard = greenButtons[i].closest('.card');
           const filmTitle = filmCard.querySelector('.card-title').innerText;

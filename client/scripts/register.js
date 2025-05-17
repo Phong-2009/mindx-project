@@ -47,15 +47,17 @@ const handleRegister = async (event) => {
       firstName,
       lastName,
       email,
+      password,
       money: 0, // default balance
-      createdAt: new Date()
+      createdAt: new Date().toISOString() // Store the date in ISO format
     };
 
     // Save user data in Firestore using their UID
     await setDoc(doc(db, "users", user.uid), userData);
-
+    console.log("User data:", userData);
     alert("Account data saved to Firestore!");
-    window.location.href = "login.html"; // Or move to homepage, etc.
+    window.location.href = "login.html"; // Redirect to login page
+
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
       alert("This email is already in use. Please use a different one or log in.");
