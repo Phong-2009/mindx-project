@@ -1,6 +1,5 @@
 import { auth } from './firebase-config.js';
-import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-
+import { getFirestore, doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 const db = getFirestore();
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (docSnap.exists()) {
           const userData = docSnap.data();
-          console.log("User data retrieved from Firestore:", userData);
+          console.log("User data retrieved from Firestore:", userData.email);
 
           // Update the UI with user data
           if (userConfirm) {
@@ -52,14 +51,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
+const balanceForm = document.getElementById('balance-form');
 
-//let n = 100;
-// let i = 10;
 
-// while (n >= i) {
-//     n -= i;
-//     console.log(n);
-//     if (n == 0) {
-//         break;
-//     }
-// }
+const handlePurchase = async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  try {
+    if (user) {
+      const balance = doc(db, "users", user.uid);
+      const balanceSnapshot = await getDoc(balance);
+      if (balanceSnapshot.exists()) {
+        // Ensure currentBalance is a number, default to 0 if undefined/null
+        const currentBalance = Number(balanceSnapshot.data().balance) || 0;
+        // Parse updateBalance and validate
+        const updateBalanceValue = document.getElementById('update-balance').value;
+        const updateBalance = Number.parseFloat(updateBalanceValue);
+        if (isNaN(updateBalance)) {
+          alert("Please enter a valid number to update the balance.");
+          return;
+        }
+        const newBalance = currentBalance + updateBalance;
+        await updateDoc(balance, { balance: newBalance });
+        const userData = balanceSnapshot.data();
+        console.log(`User ${userData.firstName} ${userData.lastName} new balance:`, newBalance);
+        
+        const updateBalanceOutput = document.getElementById('update-balance-output');
+        updateBalanceOutput.innerHTML = `
+          <div class="alert alert-success" role="alert">
+            ${userData.firstName} ${userData.lastName}, your new balance is: ${newBalance.toString()}
+          </div>
+        `; 
+      } else {
+        console.log("No balance data found.");
+      }
+    }
+  } catch (error) {
+    console.error("Error updating balance:", error);
+    alert("Error updating balance: " + error.message);
+  }
+}
+balanceForm.addEventListener('submit', handlePurchase);
+

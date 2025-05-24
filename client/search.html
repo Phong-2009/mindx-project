@@ -184,12 +184,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
         <div class="container-fluid container-2 div-custom">
-          <a
-            class="navbar-brand filmcritics mb-1"
-            href="index.html"
-            style="color: #fff; font-size: 2rem"
-            >FilmCritics®</a
-          >
+          <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem">FilmCritics®</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -204,20 +199,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-lg-0">
               <li class="nav-item">
-                <a
-                  id="text"
-                  class="nav-link p-2 bd-highlight about"
-                  href="./about.html"
-                  >About FilmCritics®</a
-                >
+                <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
               </li>
               <li class="nav-item" id="user-confirm">
-                <a
-                  id="text"
-                  class="nav-link p-2 bd-highlight custom-login-link"
-                  href="./login.html"
-                  >LOGIN</a
-                >
+                <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
               </li>
             </ul>
           </div>
@@ -335,33 +320,9 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-
-        if (loggedInUser) {
-            document.getElementById('user-confirm').innerHTML = `
-                <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">
-                    ${loggedInUser}
-                </a>
-                <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">
-                    LOGOUT
-                </a>
-            `;
-
-            document.getElementById('username').addEventListener('click', function () {
-                localStorage.removeItem('loggedInUser');
-                localStorage.setItem('isLoggedIn', JSON.stringify(false));
-                window.location.href = './index.html';
-            });
-
-            document.getElementById('logout').addEventListener('click', function () {
-                localStorage.removeItem('loggedInUser');
-                localStorage.setItem('isLoggedIn', JSON.stringify(false));
-                window.location.href = './index.html';
-            });
-        }
-      });
+      
     </script>
+    <script type="module" src="./scripts/watch.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>

@@ -1,5 +1,6 @@
 import { TMDB_API_KEY } from "./config.js";
-
+import { auth } from './firebase-config.js';
+import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 (async () => {
   const HomeAPIRoutes = {
     "Trending Movies": { url: "/trending/movie/week" },
@@ -96,6 +97,9 @@ import { TMDB_API_KEY } from "./config.js";
                 </button>
                 <button type="button" class="btn btn-success greenButton">
                   <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
+                </button>
+                <button type="button" class="btn btn-danger">
+                  <a class="a-tag text-light" href="./watch.html?id=${item.id}"><i class="fa-solid fa-film"></i></a>
                 </button>    
             </div>
               </div>
@@ -125,11 +129,62 @@ import { TMDB_API_KEY } from "./config.js";
       }
     }
     // Add evevnt listeners for click here buttons
-    const clickHereButtons = document.getElementsByClassName("click-here");
     
-    if (clickHereButtons.length > 0) {
-      for (let i = 0; i < clickHereButtons.length; i++) {
-        clickHereButtons[i].addEventListener("click", function () {
+const db = getFirestore();
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const userConfirm = document.getElementById('user-confirm'); // Ensure this element exists in your HTML
+
+  // Wait for the auth state to be ready
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      // User is signed in
+      console.log("User is signed in:", user);
+
+      try {
+        // Retrieve user data from Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          console.log("User data retrieved from Firestore:", userData.email);
+
+          // Update the UI with user data
+          if (userConfirm) {
+            userConfirm.innerHTML = `
+              <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
+              <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+            `;
+
+            // Add logout functionality
+            const logoutButton = document.getElementById('logout');
+            if (logoutButton) {
+              logoutButton.addEventListener('click', async () => {
+                await auth.signOut();
+                alert("You have been logged out.");
+                window.location.href = "login.html"; // Redirect to login page
+              });
+            }
+          }
+        } else {
+          console.log("No user data found in Firestore.");
+        }
+      } catch (error) {
+        console.error("Error retrieving user data from Firestore:", error);
+      }
+    } else {
+      // No user is signed in
+      console.log('No user is signed in');
+    }
+  });
+});
+
+
+    const watchNowButtons = document.getElementsByClassName("watch-now-btn");
+    if (watchNowButtons.length > 0) {
+      for (let i = 0; i < watchNowButtons.length; i++) {
+        watchNowButtons[i].addEventListener("click", function () {
           // Check if the user is logged in
           onAuthStateChanged(auth, (user) => {
             if (user) {
