@@ -1,5 +1,5 @@
 import { getAuth } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js'
-import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 import { getStorage } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 
@@ -21,4 +21,3 @@ export const db = getFirestore(app);
 // Initialize Cloud Storage and get a reference to the service
 export const storage = getStorage(app);
 // Initialize Cloud Storage and get a reference to the service
-export const docRef = doc(db, "users", "userId"); // Replace with your document ID

@@ -1,6 +1,56 @@
 import { TMDB_API_KEY } from "./config.js";
 import { auth } from './firebase-config.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
 import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+const db = getFirestore();
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const userConfirm = document.getElementById('user-confirm'); // Ensure this element exists in your HTML
+
+  // Wait for the auth state to be ready
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      // User is signed in
+      console.log("User is signed in:", user);
+
+      try {
+        // Retrieve user data from Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          console.log("User data retrieved from Firestore:", userData.email);
+
+          // Update the UI with user data
+          if (userConfirm) {
+            userConfirm.innerHTML = `
+              <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
+              <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+            `;
+
+            // Add logout functionality
+            const logoutButton = document.getElementById('logout');
+            if (logoutButton) {
+              logoutButton.addEventListener('click', async () => {
+                await auth.signOut();
+                alert("You have been logged out.");
+              });
+            }
+          }
+        } else {
+          console.log("No user data found in Firestore.");
+        }
+      } catch (error) {
+        console.error("Error retrieving user data from Firestore:", error);
+      }
+    } else {
+      // No user is signed in
+      console.log('No user is signed in');
+    }
+  });
+});
+
 (async () => {
   const HomeAPIRoutes = {
     "Trending Movies": { url: "/trending/movie/week" },
@@ -98,7 +148,7 @@ import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11
                 <button type="button" class="btn btn-success greenButton">
                   <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
                 </button>
-                <button type="button" class="btn btn-danger">
+                <button type="button" class="btn btn-danger watch-btn">
                   <a class="a-tag text-light" href="./watch.html?id=${item.id}"><i class="fa-solid fa-film"></i></a>
                 </button>    
             </div>
@@ -118,7 +168,7 @@ import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11
           onAuthStateChanged(auth, (user) => {
             if (user) {
               //  User is logged in
-              console.log("Logged in as:", user.email); 
+              console.log("Logged in as:", user.email);
             } else {
               // Not logged in
               alert("You need to log in to view film details.");
@@ -129,67 +179,15 @@ import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11
       }
     }
     // Add evevnt listeners for click here buttons
-    
-const db = getFirestore();
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const userConfirm = document.getElementById('user-confirm'); // Ensure this element exists in your HTML
-
-  // Wait for the auth state to be ready
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      // User is signed in
-      console.log("User is signed in:", user);
-
-      try {
-        // Retrieve user data from Firestore
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          console.log("User data retrieved from Firestore:", userData.email);
-
-          // Update the UI with user data
-          if (userConfirm) {
-            userConfirm.innerHTML = `
-              <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
-              <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
-            `;
-
-            // Add logout functionality
-            const logoutButton = document.getElementById('logout');
-            if (logoutButton) {
-              logoutButton.addEventListener('click', async () => {
-                await auth.signOut();
-                alert("You have been logged out.");
-                window.location.href = "login.html"; // Redirect to login page
-              });
-            }
-          }
-        } else {
-          console.log("No user data found in Firestore.");
-        }
-      } catch (error) {
-        console.error("Error retrieving user data from Firestore:", error);
-      }
-    } else {
-      // No user is signed in
-      console.log('No user is signed in');
-    }
-  });
-});
-
-
-    const watchNowButtons = document.getElementsByClassName("watch-now-btn");
-    if (watchNowButtons.length > 0) {
-      for (let i = 0; i < watchNowButtons.length; i++) {
-        watchNowButtons[i].addEventListener("click", function () {
+    const watchButtons = document.getElementsByClassName("watch-btn");
+    if (watchButtons.length > 0) {
+      for (let i = 0; i < watchButtons.length; i++) {
+        watchButtons[i].addEventListener("click", function () {
           // Check if the user is logged in
           onAuthStateChanged(auth, (user) => {
             if (user) {
               //  User is logged in
-              console.log("Logged in as:", user.email); 
+              console.log("Logged in as:", user.email);
             } else {
               // Not logged in
               alert("You need to log in to view film details.");
@@ -199,62 +197,63 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       }
     }
+
+    
 
     // Add event listeners for green buttons
-    const greenButtons = document.getElementsByClassName("greenButton");
-    const cartCountElement = document.getElementById("cartCount");
-    let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
-    cartCountElement.innerHTML = cartCount;
+    // const greenButtons = document.getElementsByClassName("greenButton");
+    // const cartCountElement = document.getElementById("cartCount");
+    // let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+    // cartCountElement.innerHTML = cartCount;
+    //     if (greenButtons.length > 0) {
+    //       for (let i = 0; i < greenButtons.length; i++) {
+    //         greenButtons[i].addEventListener("click", function () {
+    //           // Check if the user is logged in
+    //           const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+    //           onAuthStateChanged(auth, (user) => {
+    //             if (user) {
+    //               //  User is logged in
+    //               console.log("Logged in as:", user.email);
+    //             } else {
+    //               // Not logged in
+    //               alert("You need to log in to view film details.");
+    //               window.location.href = "./login.html";
+    //             }
+    //           });
 
-    if (greenButtons.length > 0) {
-      for (let i = 0; i < greenButtons.length; i++) {
-        greenButtons[i].addEventListener("click", function () {
-          // Check if the user is logged in
-          const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-          onAuthStateChanged(auth, (user) => {
-            if (user) {
-              //  User is logged in
-              console.log("Logged in as:", user.email); 
-            } else {
-              // Not logged in
-              alert("You need to log in to view film details.");
-              window.location.href = "./login.html";
-            }
-          });
+    //           const filmCard = greenButtons[i].closest('.card');
+    //           const filmTitle = filmCard.querySelector('.card-title').innerText;
+    //           const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';
+    //           const filmImage = filmCard.querySelector('img').src;
+    //           const filmId = filmCard.querySelector('a.a-tag').href.split('id=')[1];
 
-          const filmCard = greenButtons[i].closest('.card');
-          const filmTitle = filmCard.querySelector('.card-title').innerText;
-          const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';
-          const filmImage = filmCard.querySelector('img').src;
-          const filmId = filmCard.querySelector('a.a-tag').href.split('id=')[1];
+    //           const film = {
+    //             id: filmId,
+    //             title: filmTitle,
+    //             description: filmDescription,
+    //             image: filmImage
+    //           };
 
-          const film = {
-            id: filmId,
-            title: filmTitle,
-            description: filmDescription,
-            image: filmImage
-          };
+    //           // Check if the film is already selected
+    //           let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
+    //           const filmExists = selectedFilms.some(f => f.id === filmId);
 
-          // Check if the film is already selected
-          let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
-          const filmExists = selectedFilms.some(f => f.id === filmId);
+    //           if (filmExists) {
+    //             alert("This film is already in your wishlist!");
+    //           } else {
+    //             // Save film details to localStorage
+    //             selectedFilms.push(film);
+    //             localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
 
-          if (filmExists) {
-            alert("This film is already in your wishlist!");
-          } else {
-            // Save film details to localStorage
-            selectedFilms.push(film);
-            localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
-
-            cartCount++;
-            localStorage.setItem('cartCount', JSON.stringify(cartCount));
-            cartCountElement.innerHTML = cartCount;
-            alert("You have selected a film for later!");
-          }
-        });
-      }
-    } else {
-      console.log("No green buttons found");
-    }
+    //             cartCount++;
+    //             localStorage.setItem('cartCount', JSON.stringify(cartCount));
+    //             cartCountElement.innerHTML = cartCount;
+    //             alert("You have selected a film for later!");
+    //           }
+    //         });
+    //       }
+    //     } else {
+    //       console.log("No green buttons found");
+    //     }
   });
 })();
