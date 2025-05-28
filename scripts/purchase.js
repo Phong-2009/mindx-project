@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           // Update the UI with user data
           if (userConfirm) {
             userConfirm.innerHTML = `
-              <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
-              <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
+                <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+              </div>
             `;
 
             // Add logout functionality

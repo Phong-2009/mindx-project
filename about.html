@@ -72,10 +72,10 @@
 <body style="background-color: rgb(20, 20, 20);">
 
     <!-- Header -->
-    <header>
+    <header style="width:100%;">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
             <div class="container-fluid container-2 div-custom">
-                <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem;">FilmCritics®</a>
+                <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem;">FilmsNetwork®</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -85,15 +85,25 @@
                             <a id="text" class="nav-link p-2 bd-highlight "href="./page.html">Your page</a>
                         </li>
                         <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmCritics®</a>
+                            <a id="text" class="nav-link p-2 bd-highlight "href="./wishlist.html">Wishlist (<span id="cartCount">0</span>)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./search.html">
+                                <i id="search-button" style="color: #fff; font-size: 20px;" class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About FilmsNetwork®</a>
                         </li>
                         <li class="nav-item" id="user-confirm">
-                            <a id="text" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+                            <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+                            <div id="avatar-action-container"></div>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>     
     </header>
 
     <!-- Hero Banner -->
@@ -261,12 +271,12 @@
             }
         });
     </script>
-    <script
+    <!-- <script
     src="https://www.chatbase.co/embed.min.js"
     chatbotId="PBO4TDC3PYUL4mJnW5oja"
     domain="www.chatbase.co"
     defer
-></script>
+></script> -->
 </body>
 
 </html>

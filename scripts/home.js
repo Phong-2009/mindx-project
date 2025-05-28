@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const userConfirm = document.getElementById('user-confirm'); // Ensure this element exists in your HTML
 
   // Wait for the auth state to be ready
-  auth.onAuthStateChanged(async (user) => {
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       // User is signed in
       console.log("User is signed in:", user);
@@ -25,8 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           // Update the UI with user data
           if (userConfirm) {
             userConfirm.innerHTML = `
-              <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
-              <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a id="username" class="nav-link p-2 bd-highlight custom-login-link" href="#">${userData.firstName} ${userData.lastName}</a>
+                <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="#">LOGOUT</a>
+              </div>
             `;
 
             // Add logout functionality
@@ -35,6 +37,9 @@ document.addEventListener('DOMContentLoaded', async () => {
               logoutButton.addEventListener('click', async () => {
                 await auth.signOut();
                 alert("You have been logged out.");
+                userConfirm.innerHTML = `
+                  <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+                `; // Clear user info
               });
             }
           }
@@ -190,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               console.log("Logged in as:", user.email);
             } else {
               // Not logged in
-              alert("You need to log in to view film details.");
+              alert("You need to log in to watch");
               window.location.href = "./login.html";
             }
           });

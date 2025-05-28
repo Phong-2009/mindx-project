@@ -24,6 +24,22 @@
 <style>
     html, body {
     overflow-x: hidden;
+
+    .back-to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #FA320A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+        }
 }
 </style>
 
@@ -60,9 +76,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-    
-         
+        </nav>         
     </header>
     
       <div class="hero-section">
@@ -152,28 +166,23 @@
         </div>
     </footer>
 
+    <div class="back-to-top-btn" onclick="scrollToTopButton()">
+        <i class="fas fa-arrow-up fa-lg" style="color:#fff;"></i>
+    </div>
+    <script>
+        scrollToTopButton = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        const watchNowButton = document.getElementsByClassName("watch-now-btn");
-        for (let i = 0; i < watchNowButton.length; i++) {
-            watchNowButton[i].addEventListener("click", function () {
-                // Check if the user is logged in
-                onAuthStateChanged(auth, (user) => {
-                if (user) {
-                //  User is logged in
-                    console.log("Logged in as:", user.email);
-                } else {
-                    // Not logged in
-                    alert("You need to log in to view film details.");
-                    window.location.href = "./login.html";
-                }
-            });
-            });
-        }
-
         function scrollToTop() {
 
             const carousel = document.querySelector('.carousel');
