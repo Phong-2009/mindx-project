@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           const userData = docSnap.data();
           console.log("User data retrieved from Firestore:", userData.email);
 
+          if (userData.role === 'admin') {
+            // Redirect admin to admin page
+            window.location.href = "./admin.html";
+          }
+          
           // Update the UI with user data
           if (userConfirm) {
             userConfirm.innerHTML = `
@@ -50,7 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error retrieving user data from Firestore:", error);
       }
     } else {
-      // No user is signed in
       console.log('No user is signed in');
     }
   });
@@ -203,62 +207,61 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    
 
-    // Add event listeners for green buttons
-    // const greenButtons = document.getElementsByClassName("greenButton");
-    // const cartCountElement = document.getElementById("cartCount");
-    // let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
-    // cartCountElement.innerHTML = cartCount;
-    //     if (greenButtons.length > 0) {
-    //       for (let i = 0; i < greenButtons.length; i++) {
-    //         greenButtons[i].addEventListener("click", function () {
-    //           // Check if the user is logged in
-    //           const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-    //           onAuthStateChanged(auth, (user) => {
-    //             if (user) {
-    //               //  User is logged in
-    //               console.log("Logged in as:", user.email);
-    //             } else {
-    //               // Not logged in
-    //               alert("You need to log in to view film details.");
-    //               window.location.href = "./login.html";
-    //             }
-    //           });
 
-    //           const filmCard = greenButtons[i].closest('.card');
-    //           const filmTitle = filmCard.querySelector('.card-title').innerText;
-    //           const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';
-    //           const filmImage = filmCard.querySelector('img').src;
-    //           const filmId = filmCard.querySelector('a.a-tag').href.split('id=')[1];
+    const greenButtons = document.getElementsByClassName("greenButton");
+    const cartCountElement = document.getElementById("cartCount");
+    let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+    cartCountElement.innerHTML = cartCount;
+    if (greenButtons.length > 0) {
+      for (let i = 0; i < greenButtons.length; i++) {
+        greenButtons[i].addEventListener("click", function () {
+          // Check if the user is logged in
+          const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              //  User is logged in
+              console.log("Logged in as:", user.email);
+            } else {
+              // Not logged in
+              alert("You need to log in to view film details.");
+              window.location.href = "./login.html";
+            }
+          });
 
-    //           const film = {
-    //             id: filmId,
-    //             title: filmTitle,
-    //             description: filmDescription,
-    //             image: filmImage
-    //           };
+          const filmCard = greenButtons[i].closest('.card');
+          const filmTitle = filmCard.querySelector('.card-title').innerText;
+          const filmDescription = filmCard.querySelector('.card-description') ? filmCard.querySelector('.card-description').innerText : '';
+          const filmImage = filmCard.querySelector('img').src;
+          const filmId = filmCard.querySelector('a.a-tag').href.split('id=')[1];
 
-    //           // Check if the film is already selected
-    //           let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
-    //           const filmExists = selectedFilms.some(f => f.id === filmId);
+          const film = {
+            id: filmId,
+            title: filmTitle,
+            description: filmDescription,
+            image: filmImage
+          };
 
-    //           if (filmExists) {
-    //             alert("This film is already in your wishlist!");
-    //           } else {
-    //             // Save film details to localStorage
-    //             selectedFilms.push(film);
-    //             localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
+          // Check if the film is already selected
+          let selectedFilms = JSON.parse(localStorage.getItem('selectedFilms')) || [];
+          const filmExists = selectedFilms.some(f => f.id === filmId);
 
-    //             cartCount++;
-    //             localStorage.setItem('cartCount', JSON.stringify(cartCount));
-    //             cartCountElement.innerHTML = cartCount;
-    //             alert("You have selected a film for later!");
-    //           }
-    //         });
-    //       }
-    //     } else {
-    //       console.log("No green buttons found");
-    //     }
+          if (filmExists) {
+            alert("This film is already in your wishlist!");
+          } else {
+            // Save film details to localStorage
+            selectedFilms.push(film);
+            localStorage.setItem('selectedFilms', JSON.stringify(selectedFilms));
+
+            cartCount++;
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+            cartCountElement.innerHTML = cartCount;
+            alert("You have selected a film for later!");
+          }
+        });
+      }
+    } else {
+      console.log("No green buttons found");
+    }
   });
 })();
