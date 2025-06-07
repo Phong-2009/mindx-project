@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       // User is signed in
-      console.log("User is signed in:", user);
 
       try {
         // Retrieve user data from Firestore
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (docSnap.exists()) {
           const userData = docSnap.data();
-          console.log("User data retrieved from Firestore:", userData.email);
 
           if (userData.role === 'admin') {
             // Redirect admin to admin page
