@@ -1,5 +1,5 @@
 import { db, auth } from "./firebase-config.js";
-import { doc, getDocs, addDoc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { doc, getDoc, getDocs, addDoc, setDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 const filmNameInput = document.getElementById('new-name');
 const filmDescriptionInput = document.getElementById('new-description');
@@ -23,6 +23,7 @@ logout.addEventListener('click', async (e) => {
         console.error("Error signing out: ", error);
     }
 });
+
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,12 +74,12 @@ const handleSubmit = async (e) => {
 }
 
 filmForm.addEventListener('submit', handleSubmit);
-
 // Function to render films
 const renderFilmsRealtime = () => {
     const filmsRef = collection(db, "films");
     onSnapshot(filmsRef, (snapshot) => {
         filmList.innerHTML = ""; // Clear previous list
+
 
         snapshot.forEach(docSnap => {
             const filmData = docSnap.data();
@@ -86,37 +87,33 @@ const renderFilmsRealtime = () => {
 
             // Create film item
             const filmDiv = document.createElement('div');
-            
-            filmDiv.innerHTML = `
-                <style>
-                    
-                </style>
+            filmDiv.className = "col-md-3 mb-3 d-flex"; // <-- Đặt class col-md-3 ở đây
 
-                <div class="col-md-3 mb-3 d-flex">
-                    <div class="card bg-black">
-                    <img class="img-fluid" src="${filmData.image}" class="card-img-top img-fluid" alt="${filmData.name}">
-                    <div class="card-body card-test">
-                        <h4 class="card-title text-light card-title-test">${filmData.name}</h4>
-                        <button type="button" class="btn btn-warning">
-                            <a class="a-tag text-dark click-here" href="./info.html?id=${filmId}">Click here</a>
-                        </button>
-                        <button type="button" class="btn btn-success greenButton">
-                            <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
-                        </button>
-                        <button type="button" class="btn btn-danger watch-btn">
-                            <a class="a-tag text-light" href="./watch.html?id=${filmId}"><i class="fa-solid fa-film"></i></a>
-                        </button>    
-                       </div>
+            filmDiv.innerHTML = `
+                <div class="card bg-black w-100 h-100 d-flex flex-column align-items-center">
+                    <img class="img-fluid mx-auto d-block" src="${filmData.image}" alt="${filmData.name}" style="height:340px; object-fit:cover; width:100%;">
+                    <div class="card-body card-test d-flex flex-column justify-content-between align-items-center w-100">
+                        <h4 class="card-title text-light card-title-test text-center mb-3" style="min-height:48px">${filmData.name}</h4>
+                        <div class="d-flex justify-content-center gap-2 w-100">
+                            <button type="button" class="btn btn-primary edit-film-btn" data-id="${filmId}">
+                                <i class="fa fa-edit"></i> Edit
+                            </button>
+                            <button type="button" class="btn btn-danger delete-film-btn" film-data-id="${filmId}">
+                                <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </div>
                     </div>
-                </div>`;
-            
+                </div>
+        `;
+
             filmList.appendChild(filmDiv);
         });
-
+        // Add delete buttons
+        const deleteButtons = document.querySelectorAll('.delete-film-btn');
         // Add delete event listeners
-        filmList.querySelectorAll('button[data-id]').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
-                const id = btn.getAttribute('data-id');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = btn.getAttribute('film-data-id');
                 if (confirm("Are you sure you want to delete this film?")) {
                     await deleteDoc(doc(db, "films", id));
                     // No need to call renderFilmsRealtime() here, onSnapshot will auto-update
@@ -125,6 +122,48 @@ const renderFilmsRealtime = () => {
         });
     });
 }
-
-// Call the real-time render function when the page loads
 renderFilmsRealtime();
+
+document.addEventListener('click', async (e) => {
+    const editBtn = e.target.closest('.edit-film-btn');
+    if (editBtn) {
+        const filmId = editBtn.getAttribute('data-id');
+        const filmDocRef = doc(db, "films", filmId);
+        const filmDocSnap = await getDoc(filmDocRef);
+        if (filmDocSnap.exists()) {
+            const film = filmDocSnap.data();
+            document.getElementById('edit-id').value = filmId;
+            document.getElementById('edit-name').value = film.name;
+            document.getElementById('edit-description').value = film.description;
+            document.getElementById('edit-image').value = film.image;
+            // Hiện modal
+            const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+            editModal.show();
+        }
+    }
+});
+
+// Xử lý cập nhật film khi submit form
+document.getElementById('edit-film-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const filmId = document.getElementById('edit-id').value;
+    const name = document.getElementById('edit-name').value.trim();
+    const description = document.getElementById('edit-description').value.trim();
+    const image = document.getElementById('edit-image').value.trim();
+
+    if (!name || !description || !image) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    try {
+        const filmDocRef = doc(db, "films", filmId);
+        await updateDoc(filmDocRef, { name, description, image });
+        // Đóng modal
+        bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+        alert("Film updated successfully!");
+    } catch (err) {
+        alert("Error updating film: " + err.message);
+    }
+});
+

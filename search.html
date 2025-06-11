@@ -229,12 +229,6 @@
       const TMDB_API_KEY = "9b7c3ede447b14c5e0e9d33a137ddac9";
     
       async function searchFilms() {
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-        if (!loggedInUser) {
-          alert("You need to log in to search for a film.");
-          window.location.href = './login.html';
-          return;
-        }
 
         const query = document.getElementById("search-input").value.trim();
     
@@ -322,7 +316,7 @@
 
       
     </script>
-    <script type="module" src="./scripts/watch.js"></script>
+    <script type="module" src="./scripts/home.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>

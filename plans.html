@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Manage Subscription Plans</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background: #181818;
+        color: #fff;
+      }
+      .plan-card {
+        background: #232323;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px #0004;
+      }
+      .plan-card .btn {
+        border-radius: 18px;
+      }
+      .modal-content {
+        background: #232323;
+        color: #fff;
+      }
+      .form-label {
+        color: #ff9800;
+      }
+      .table thead {
+        color: #ff9800;
+      }
+      .table tbody tr {
+        color: #fff;
+      }
+      .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: #222 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-custom shadow-sm py-3 mb-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="admin.html">
+          FilmsNetwork
+          <sup style="font-size: 1rem; color: #fff">®</sup>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="admin.html">
+                <i class="fa fa-cogs me-1"></i>
+                Admin Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-light btn-sm ms-3" id="logout-btn" style="border-radius: 18px">
+                <i class="fa fa-sign-out-alt me-1"></i>
+                LOGOUT
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold">Manage Subscription Plans</h2>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+          <i class="fa fa-plus"></i>
+          Add Plan
+        </button>
+      </div>
+
+      <!-- Plans Table -->
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price ($/month)</th>
+              <th>Description</th>
+              <th>Features</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="plans-table-body">
+            <!-- Plans will be rendered here by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add Plan Modal -->
+    <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form class="modal-content" id="add-plan-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPlanModalLabel">Add New Plan</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Plan Name</label>
+              <input type="text" class="form-control" name="name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price ($/month)</label>
+              <input type="number" class="form-control" name="price" min="0" step="0.01" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" name="description" rows="2" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Features (comma separated)</label>
+              <input type="text" class="form-control" name="features" placeholder="e.g. No Ads, Offline Viewing" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Add Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Plan Modal -->
+    <div class="modal fade" id="editPlanModal" tabindex="-1" aria-labelledby="editPlanModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form class="modal-content" id="edit-plan-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPlanModalLabel">Edit Plan</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="planId" />
+            <div class="mb-3">
+              <label class="form-label">Plan Name</label>
+              <input type="text" class="form-control" name="name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price ($/month)</label>
+              <input type="number" class="form-control" name="price" min="0" step="0.01" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" name="description" rows="2" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Features (comma separated)</label>
+              <input type="text" class="form-control" name="features" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bạn sẽ cần viết thêm JS để thao tác với Firestore: lấy, thêm, sửa, xóa các plan -->
+    <script type="module" src="./scripts/plans.js"></script>
+  </body>
+</html>

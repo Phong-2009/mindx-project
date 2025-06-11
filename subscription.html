@@ -1,246 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNJX66Z0YF"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FilmsNetwork | Premium</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png" />
+  <style>
+    body {
+      background: #181818;
+      color: #fff;
+      font-family: "Roboto", Arial, sans-serif;
+    }
+    .yt-premium-header {
+      background: #212121;
+      padding: 32px 0 24px 0;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    .yt-premium-logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .yt-premium-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .yt-premium-desc {
+      color: #aaa;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+    .yt-premium-benefits {
+      background: #212121;
+      border-radius: 18px;
+      margin: 40px auto 24px auto;
+      max-width: 900px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    }
+    .yt-benefit-icon {
+      color: #ff0000;
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+    .yt-benefit-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .yt-benefit-desc {
+      color: #bbb;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .yt-premium-plan {
+      background: #282828;
+      border-radius: 18px;
+      max-width: 420px;
+      margin: 0 auto 32px auto;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    }
+    .yt-plan-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .yt-plan-price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ff0000;
+      margin-bottom: 8px;
+    }
+    .yt-plan-desc {
+      color: #bbb;
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+    }
+    .yt-premium-btn {
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 36px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.12s;
+      margin-bottom: 8px;
+    }
+    .yt-premium-btn:hover, .yt-premium-btn:focus {
+      background: #e60000;
+      transform: translateY(-1px) scale(1.03);
+      outline: none;
+    }
+    .yt-premium-footer {
+      text-align: center;
+      color: #888;
+      font-size: 0.95rem;
+      margin: 48px 0 16px 0;
+    }
+    @media (max-width: 600px) {
+      .yt-premium-benefits, .yt-premium-plan {
+        padding: 18px 6px;
       }
-      gtag("js", new Date());
-      gtag("config", "G-VNJX66Z0YF");
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FilmsNetwork | Subscription</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png" />
-
-    <style>
-      .cancel-btn-custom {
-        background: linear-gradient(90deg, #ff5858 0%, #f857a6 100%);
-        color: #fff;
-        border: none;
-        border-radius: 24px;
-        padding: 8px 28px;
-        font-size: 1rem;
-        box-shadow: 0 4px 16px rgba(248, 87, 166, 0.15), 0 1px 4px rgba(255, 88, 88, 0.1);
-        transition: background 0.2s, color 0.2s, transform 0.12s;
-        letter-spacing: 0.5px;
-        margin: 8px 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
+      .yt-premium-header {
+        padding: 18px 0 12px 0;
       }
-
-      .cancel-btn-custom:hover,
-      .cancel-btn-custom:focus {
-        background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%);
-        transform: translateY(-1px) scale(1.03);
-        box-shadow: 0 8px 24px rgba(248, 87, 166, 0.18), 0 2px 8px rgba(255, 88, 88, 0.13);
-        outline: none;
-      }
-
-      html,
-      body {
-        overflow-x: hidden;
-      }
-
-      .back-to-top-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #fa320a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-
-  <body style="background-color: rgb(20, 20, 20)">
-    <!-- HEADER -->
-    <!-- (GIỮ NGUYÊN NỘI DUNG HEADER CỦA BẠN) -->
-    <header style="width: 100%">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
-        <div class="container-fluid container-2 div-custom">
-          <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem">FilmsNetwork®</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-lg-0">
-              <li class="nav-item">
-                <a id="text" class="nav-link p-2 bd-highlight" href="./subscription.html">Subscription</a>
-              </li>
-              <li class="nav-item">
-                <a id="text" class="nav-link p-2 bd-highlight" href="./page.html">Your page</a>
-              </li>
-              <li class="nav-item">
-                <a id="text" class="nav-link p-2 bd-highlight" href="./wishlist.html">
-                  Wishlist (
-                  <span id="cartCount">0</span>
-                  )
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./search.html">
-                  <i id="search-button" style="color: #fff; font-size: 20px" class="fa-solid fa-magnifying-glass"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About</a>
-              </li>
-              <li class="nav-item" id="user-confirm">
-                <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
-                <div id="avatar-action-container"></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main class="container py-5">
-      <h2 class="text-center text-white mb-5">Choose Your Subscription Plan</h2>
-      <div class="row justify-content-center">
-        <!-- Basic -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-lg border-0" style="background: #222; color: #fff">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold" style="color: #00bfff">Basic</h5>
-              <h6 class="card-price display-5 mb-3" style="color: #00bfff">
-                $4.99
-                <span class="fs-6">/month</span>
-              </h6>
-              <ul class="list-unstyled mb-4">
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  HD available
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Limited movies
-                </li>
-                <li>
-                  <i class="fa fa-times text-danger me-2"></i>
-                  No offline download
-                </li>
-              </ul>
-              <button id="basic" class="btn btn-outline-info w-100 fw-bold">Choose Basic</button>
-              <button class="btn cancel-btn-custom fw-bold">
-                <i class="fa fa-times-circle me-2"></i>
-                Cancel Subscription
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Standard -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-lg border-0" style="background: #1a1a1a; color: #fff">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold" style="color: #ff9800">Standard</h5>
-              <h6 class="card-price display-5 mb-3" style="color: #ff9800">
-                $9.99
-                <span class="fs-6">/month</span>
-              </h6>
-              <ul class="list-unstyled mb-4">
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Full HD available
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Unlimited movies
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Offline download
-                </li>
-              </ul>
-              <button id="standard" class="btn btn-warning w-100 fw-bold text-dark">Choose Standard</button>
-              <button class="btn cancel-btn-custom fw-bold">
-                <i class="fa fa-times-circle me-2"></i>
-                Cancel Subscription
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Premium -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-lg border-0" style="background: #1a1a1a; color: #fff">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold" style="color: #ff1744">Premium</h5>
-              <h6 class="card-price display-5 mb-3" style="color: #ff1744">
-                $14.99
-                <span class="fs-6">/month</span>
-              </h6>
-              <ul class="list-unstyled mb-4">
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Ultra HD & 4K
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Unlimited movies
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Offline download
-                </li>
-                <li>
-                  <i class="fa fa-check text-success me-2"></i>
-                  Priority support
-                </li>
-              </ul>
-              <button id="premium" class="btn btn-danger w-100 fw-bold">Choose Premium</button>
-              <button class="btn cancel-btn-custom fw-bold">
-                <i class="fa fa-times-circle me-2"></i>
-                Cancel Subscription
-              </button>
-            </div>
-          </div>
-        </div>
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background: #ff2d2d;">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="./index.html">
+        <i style="font-size:2rem;color:#fff;"></i>
+        FilmsNetwork<sup style="font-size:1rem; color:#fff;">®</sup>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link text-white fw-semibold" href="wishlist.html">Wishlist <span class="badge bg-light text-danger">0</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-semibold" href="search.html"><i class="fas fa-search"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-semibold" href="#">About®</a>
+          </li>
+          <li id="user-confirm" class="nav-item">
+            <span class="nav-link text-white fw-semibold"></span>
+          </li>
+          
+        </ul>
       </div>
-    </main>
-
-    <!-- FOOTER -->
-    <!-- (GIỮ NGUYÊN PHẦN FOOTER CỦA BẠN) -->
-
-    <div class="back-to-top-btn" onclick="scrollToTop()">
-      <i class="fas fa-arrow-up fa-lg" style="color: #fff"></i>
     </div>
+  </nav>
+  <!-- HEADER -->
+  <div class="yt-premium-header">
+    <div class="yt-premium-logo">
+      <i class="fab fa-youtube"></i>
+      FilmsNetwork<sup style="font-size:1rem; color:#ff0000;">Premium</sup>
+    </div>
+    <div class="yt-premium-title">Enjoy FilmsNetwork Premium</div>
+    <p class="yt-premium-desc">
+      Ad-free movies, offline viewing, and exclusive content. Try it free for 1 month!
+    </p>
+  </div>
 
-    <script>
-      function scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-    </script>
+  <!-- BENEFITS -->
+  <div class="yt-premium-benefits row text-center justify-content-center">
+    <div class="col-md-3 col-6 mb-4">
+      <div class="yt-benefit-icon"><i class="fas fa-film"></i></div>
+      <div class="yt-benefit-title">No Ads</div>
+      <div class="yt-benefit-desc">Watch all movies and shows without interruptions.</div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="yt-benefit-icon"><i class="fas fa-download"></i></div>
+      <div class="yt-benefit-title">Offline Viewing</div>
+      <div class="yt-benefit-desc">Download your favorites and watch anywhere, anytime.</div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="yt-benefit-icon"><i class="fas fa-star"></i></div>
+      <div class="yt-benefit-title">Exclusive Content</div>
+      <div class="yt-benefit-desc">Access exclusive movies and early releases.</div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="yt-benefit-icon"><i class="fas fa-tv"></i></div>
+      <div class="yt-benefit-title">Watch on Any Device</div>
+      <div class="yt-benefit-desc">Enjoy on your TV, laptop, tablet, or phone.</div>
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <!-- PLAN CARD -->
+  <div class="yt-premium-plan">
+    <div class="yt-plan-title">Premium Plan</div>
+    <div class="yt-plan-price">$14.99 <span style="font-size:1rem; color:#bbb;">/month</span></div>
+    <div class="yt-plan-desc">Try 1 month free, then $14.99/month. Cancel anytime.</div>
+    <button id="premium" class="yt-premium-btn">Get Premium</button>
+    <div style="margin-top:10px;">
+      <button class="btn btn-outline-light btn-sm" style="border-radius:18px;">Cancel Subscription</button>
+    </div>
+  </div>
 
-    <!-- <script
-        src="https://www.chatbase.co/embed.min.js"
-        chatbotId="PBO4TDC3PYUL4mJnW5oja"
-        domain="www.chatbase.co"
-        defer
-    ></script> -->
-    <script type="module" src="./scripts/firebase-config.js"></script>
-    <script type="module" src="./scripts/home.js"></script>
-    <script type="module" src="./scripts/subscription.js"></script>
-  </body>
+  <div class="yt-premium-footer">
+    &copy; 2025 FilmsNetwork. Not affiliated with YouTube. Terms apply.
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script type="module" src="./scripts/firebase-config.js"></script>
+  <script type="module" src="./scripts/subscription.js"></script>
+</body>
 </html>

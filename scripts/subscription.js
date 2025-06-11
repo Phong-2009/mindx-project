@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 const basicSubscription = document.getElementById('basic');
-const standardSubscription = document.getElementById('standard');
 const premiumSubscription = document.getElementById('premium');
 
 // basic subscription
@@ -84,85 +83,37 @@ const handleBasicSubscription = async (e) => {
   }
 
   try {
-    const balanceDocRef = doc(db, "users", user.uid);
-    const balanceDocSnap = await getDoc(balanceDocRef);
-    let userBalance = 0;
-    if (balanceDocSnap.exists()) {
-      const balanceData = balanceDocSnap.data();
-      userBalance = balanceData.balance || 0;
-      console.log("User balance from Firestore:", userBalance);
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      alert("User document does not exist.");
+      return;
     }
+
+    const userData = userDocSnap.data();
+    const currentPlan = userData.subscription || "free";
+    let userBalance = userData.balance || 0;
+
+    if (currentPlan === "basic") {
+      alert("You are already subscribed to the Basic plan.");
+      return;
+    }
+
     if (userBalance < 4.99) {
       alert("You do not have enough balance to subscribe to the Basic plan. Please add funds to your account.");
       window.location.href = "./purchase.html";
-    }
-
-    const userDocRef = doc(db, "users", user.uid);
-    const userDocSnap = await getDoc(userDocRef);
-    if (userDocSnap.exists()) {
-      const userData = userDocSnap.data();
-
-
-      if (userData.subscription === 'basic') {
-        alert("You are already subscribed to the Basic plan.");
-        userBalance -= 4.99;
-        await updateDoc(balanceDocRef, { balance: userBalance });
-        console.log("User balance after subscription:", userBalance);
-        return;
-      }
-
-      await updateDoc(userDocRef, { subscription: 'basic' });
-      alert("You have successfully subscribed to the Basic plan.");
-    } else {
-      console.error("User document does not exist.");
-    }
-  } catch (error) {
-    console.error("Error subscribing to Basic plan:", error);
-  }
-};
-
-const handleStandardSubscription = async (e) => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) {
-    alert("You must be logged in to subscribe.");
-    return;
-  }
-
-  try {
-    const balanceDocRef = doc(db, "users", user.uid);
-    const balanceDocSnap = await getDoc(balanceDocRef);
-    let userBalance = 0;
-    if (balanceDocSnap.exists()) {
-      const balanceData = balanceDocSnap.data();
-      userBalance = balanceData.balance || 0;
-      console.log("User balance from Firestore:", userBalance);
-    }
-    if (userBalance < 9.99) {
-      alert("You do not have enough balance to subscribe to the Standard plan. Please add funds to your account.");
-      window.location.href = "./purchase.html";
       return;
     }
-    const userDocRef = doc(db, "users", user.uid);
-    const userDocSnap = await getDoc(userDocRef);
-    if (userDocSnap.exists()) {
-      const userData = userDocSnap.data();
-      if (userData.subscription === 'standard') {
-        alert("You are already subscribed to the Standard plan.");
-        userBalance -= 9.99;
-        await updateDoc(balanceDocRef, { balance: userBalance });
-        console.log("User balance after subscription:", userBalance);
-        return;
-      }
-      await updateDoc(userDocRef, { subscription: 'standard' });
-      userBalance -= 9.99;
-      await updateDoc(balanceDocRef, { balance: userBalance });
-      alert("You have successfully subscribed to the Standard plan.");
-    } else {
-      console.error("User document does not exist.");
-    }
+
+    // Trừ tiền và cập nhật gói
+    await updateDoc(userDocRef, {
+      subscription: "basic",
+      balance: userBalance - 4.99
+    });
+    alert("You have successfully subscribed to the Basic plan.");
   } catch (error) {
-    console.error("Error subscribing to Standard plan:", error);
+    console.error("Error subscribing to Basic plan:", error);
   }
 };
 
@@ -175,42 +126,39 @@ const handlePremiumSubscription = async (e) => {
   }
 
   try {
-    const balanceDocRef = doc(db, "users", user.uid);
-    const balanceDocSnap = await getDoc(balanceDocRef);
-    let userBalance = 0;
-    if (balanceDocSnap.exists()) {
-      const balanceData = balanceDocSnap.data();
-      userBalance = balanceData.balance || 0;
-      console.log("User balance from Firestore:", userBalance);
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      alert("User document does not exist.");
+      return;
     }
+
+    const userData = userDocSnap.data();
+    const currentPlan = userData.subscription || "free";
+    let userBalance = userData.balance || 0;
+
+    if (currentPlan === "premium") {
+      alert("You are already subscribed to the Premium plan.");
+      return;
+    }
+
     if (userBalance < 19.99) {
       alert("You do not have enough balance to subscribe to the Premium plan. Please add funds to your account.");
       window.location.href = "./purchase.html";
       return;
     }
-    const userDocRef = doc(db, "users", user.uid);
-    const userDocSnap = await getDoc(userDocRef);
-    if (userDocSnap.exists()) {
-      const userData = userDocSnap.data();
-      if (userData.subscription === 'premium') {
-        alert("You are already subscribed to the Premium plan.");
-        userBalance -= 19.99;
-        await updateDoc(balanceDocRef, { balance: userBalance });
-        console.log("User balance after subscription:", userBalance);
-        return;
-      }
-      await updateDoc(userDocRef, { subscription: 'premium' });
-      userBalance -= 19.99;
-      await updateDoc(balanceDocRef, { balance: userBalance });
-      alert("You have successfully subscribed to the Premium plan.");
-    } else {
-      console.error("User document does not exist.");
-    }
+
+    // Trừ tiền và cập nhật gói
+    await updateDoc(userDocRef, {
+      subscription: "premium",
+      balance: userBalance - 19.99
+    });
+    alert("You have successfully subscribed to the Premium plan.");
   } catch (error) {
     console.error("Error subscribing to Premium plan:", error);
   }
 };
 
 basicSubscription.addEventListener('click', handleBasicSubscription);
-standardSubscription.addEventListener('click', handleStandardSubscription);
 premiumSubscription.addEventListener('click', handlePremiumSubscription);
