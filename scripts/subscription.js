@@ -70,52 +70,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 });
-const basicSubscription = document.getElementById('basic');
 const premiumSubscription = document.getElementById('premium');
 
-// basic subscription
-const handleBasicSubscription = async (e) => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) {
-    alert("You must be logged in to subscribe.");
-    return;
-  }
-
-  try {
-    const userDocRef = doc(db, "users", user.uid);
-    const userDocSnap = await getDoc(userDocRef);
-
-    if (!userDocSnap.exists()) {
-      alert("User document does not exist.");
-      return;
-    }
-
-    const userData = userDocSnap.data();
-    const currentPlan = userData.subscription || "free";
-    let userBalance = userData.balance || 0;
-
-    if (currentPlan === "basic") {
-      alert("You are already subscribed to the Basic plan.");
-      return;
-    }
-
-    if (userBalance < 4.99) {
-      alert("You do not have enough balance to subscribe to the Basic plan. Please add funds to your account.");
-      window.location.href = "./purchase.html";
-      return;
-    }
-
-    // Trừ tiền và cập nhật gói
-    await updateDoc(userDocRef, {
-      subscription: "basic",
-      balance: userBalance - 4.99
-    });
-    alert("You have successfully subscribed to the Basic plan.");
-  } catch (error) {
-    console.error("Error subscribing to Basic plan:", error);
-  }
-};
 
 const handlePremiumSubscription = async (e) => {
   e.preventDefault();
@@ -143,7 +99,7 @@ const handlePremiumSubscription = async (e) => {
       return;
     }
 
-    if (userBalance < 19.99) {
+    if (userBalance < 14.99) {
       alert("You do not have enough balance to subscribe to the Premium plan. Please add funds to your account.");
       window.location.href = "./purchase.html";
       return;
@@ -152,7 +108,7 @@ const handlePremiumSubscription = async (e) => {
     // Trừ tiền và cập nhật gói
     await updateDoc(userDocRef, {
       subscription: "premium",
-      balance: userBalance - 19.99
+      balance: userBalance - 14.99
     });
     alert("You have successfully subscribed to the Premium plan.");
   } catch (error) {
@@ -160,5 +116,40 @@ const handlePremiumSubscription = async (e) => {
   }
 };
 
-basicSubscription.addEventListener('click', handleBasicSubscription);
+cancleSubscription = document.getElementById('cancel-subscription');
+const handleCancelSubscription = async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) {
+    alert("You must be logged in to cancel your subscription.");
+    return;
+  }
+
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      alert("User document does not exist.");
+      return;
+    }
+
+    const userData = userDocSnap.data();
+    const currentPlan = userData.subscription || "free";
+
+    if (currentPlan !== "premium") {
+      alert("You are not subscribed to the Premium plan.");
+      return;
+    }
+
+    // Cập nhật gói về free
+    await updateDoc(userDocRef, {
+      subscription: "basic"
+    });
+    alert("Your Premium subscription has been cancelled.");
+  } catch (error) {
+    console.error("Error cancelling Premium subscription:", error);
+  }
+};
 premiumSubscription.addEventListener('click', handlePremiumSubscription);
+cancelSubscription.addEventListener('click', handleCancelSubscription);
