@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           const balanceNumber = document.querySelector(".current-balance");
           if (balanceNumber) {
-            balanceNumber.textContent = `Current balance: ${userData.balance !== undefined ? userData.balance : 0}$`;
+            balanceNumber.textContent = `Current balance: ${userData.balance !== undefined ? Math.floor(userData.balance) : 0}$`;
           }
           // Update the UI with user data
           if (userConfirm) {
@@ -77,16 +77,16 @@ const handlePurchase = async (e) => {
         const newBalance = currentBalance + updateBalance;
         await updateDoc(balance, { balance: newBalance });
         const userData = balanceSnapshot.data();
-        console.log(`User ${userData.firstName} ${userData.lastName} new balance:`, newBalance);
+        console.log(`User ${userData.firstName} ${userData.lastName} new balance:`, newBalance.toString());
 
         // Cập nhật số dư hiển thị ngay lập tức
         const balanceNumber = document.querySelector(".balance-number");
         if (balanceNumber) {
-          balanceNumber.textContent = newBalance;
+          balanceNumber.textContent = newBalance.toString() + "$";
         }
         document.getElementById("update-balance").value = ""; // Reset ô nhập tiền
         const updateBalanceOutput = document.getElementById("update-balance-output");
-        updateBalanceOutput.textContent = `Your balance has been updated to: ${newBalance.toString()}$`;
+        updateBalanceOutput.textContent = `Your balance has been updated to: ${Math.floor(newBalance)}$`;
       } else {
         console.log("No balance data found.");
       }

@@ -178,12 +178,14 @@ document.addEventListener("click", async function (e) {
   e.preventDefault();
 
   // Lấy user hiện tại
-  const user = auth.currentUser;
-  if (!user) {
+  const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+  if (!userDoc.exists()) {
     alert("Please login to view this film.");
     window.location.href = "./login.html";
     return;
   }
+
+  const userSubscription = userDoc.data().subscription;
 
   // Lấy id phim từ data-id của nút vừa click
   const filmId = btn.getAttribute("data-id");
@@ -200,6 +202,12 @@ document.addEventListener("click", async function (e) {
   } else {
     console.log("Film data:", filmDoc.data().name, filmDoc.data().plan);
     const filmData = filmDoc.data();
+    console.log("Film data:");
+
+  if (userSubscription != filmData.plan) {
+    alert("Your subscription does not allow you to view this film. Please upgrade your plan.");
+    return;
+  }
     // chuyển hướng sang trang phim
     window.location.href = `${filmData.link}`;
   }

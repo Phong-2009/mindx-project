@@ -32,27 +32,29 @@
 <body style="width: 100%; background-color: rgb(20, 20, 20)">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">FilmsNetwork® | Admin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <!-- Will be replaced with “Hello, AdminName” & Logout button -->
-                    <li class="nav-item" id="admin-header">
-                        <a class="nav-link" href="plans.html">Plans</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <!-- Will be replaced with “Hello, AdminName” & Logout button -->
-                    <li class="nav-item" id="admin-header">
-                        <span class="nav-link" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></span>
-                    </li>
-                </ul>
-            </div>
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="admin.html">
+            FilmsNetwork<sup style="font-size:1rem; color:#fff;">®</sup> | Admin
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="plans.html"><i class="fa fa-cube me-1"></i>Plans</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <button class="btn btn-outline-light btn-sm ms-2" id="logout-btn" style="border-radius:18px;">
+                        <i class="fa fa-sign-out-alt me-1"></i>LOGOUT
+                    </button>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- PAGE CONTENT -->
     <div class="container py-4">

@@ -116,7 +116,7 @@ const handlePremiumSubscription = async (e) => {
   }
 };
 
-cancleSubscription = document.getElementById('cancel-subscription');
+const cancelSubscription = document.getElementById('cancel-subscription');
 const handleCancelSubscription = async (e) => {
   e.preventDefault();
   const user = auth.currentUser;

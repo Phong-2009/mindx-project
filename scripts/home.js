@@ -145,8 +145,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <img class="img-fluid" src="https://image.tmdb.org/t/p/w200${item.poster_path}" class="card-img-top img-fluid" alt="${item.title || item.name}">
             <div class="card-body card-test">
                 <h4 class="card-title text-light card-title-test">${item.title || item.name}</h4>
-                <button type="button" class="btn btn-warning">
-                  <a class="a-tag text-dark click-here" href="./info.html?id=${item.id}">Click here</a>
+                <button type="button" class="btn btn-warning click-here">
+                  <a class="a-tag text-dark" href="./info.html?id=${item.id}">Click here</a>
                 </button>
                 <button type="button" class="btn btn-success greenButton">
                   <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
@@ -165,20 +165,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Add event listeners for search button
     // Add event listeners for click here buttons
     const clickHereButtons = document.getElementsByClassName("click-here");
-    for (let i = 0; i < clickHereButtons.length; i++) {
-      clickHereButtons[i].addEventListener("click", function (e) {
-        // Check if the user is logged in
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            // User is logged in
-            console.log("Logged in as:", user.email);
-          } else {
-            // Not logged in
-            alert("You need to log in to view film details.");
-            window.location.href = "./login.html";
-          }
+    if (clickHereButtons.length > 0) {
+      for (let i = 0; i < clickHereButtons.length; i++) {
+        clickHereButtons[i].addEventListener("click", function () {
+          // Check if the user is logged in
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              //  User is logged in
+              console.log("Logged in as:", user.email);
+            } else {
+              // Not logged in
+                alert("You need to log in to watch");
+                window.location.href = "./login.html";
+            }
+          });
         });
-      });
+      }
     }
     const watchButtons = document.getElementsByClassName("watch-btn");
     if (watchButtons.length > 0) {
@@ -191,8 +193,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.log("Logged in as:", user.email);
             } else {
               // Not logged in
-              alert("You need to log in to watch");
-              window.location.href = "./login.html";
+                alert("You need to log in to watch");
+                window.location.href = "./login.html";
             }
           });
         });
