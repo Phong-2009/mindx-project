@@ -1,260 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FilmsNetwork | About</title>
     <!-- Bootstrap and Font Awesome CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/1599/1599684.png" type="image/png" />
     <style>
-        /* Hero Banner */
-        .hero-banner {
-            background-image: url('https://images.unsplash.com/photo-1542204165-8d4edc707b92');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+      .bg-gradient-custom {
+        background: linear-gradient(90deg, #ff2d2d 0%, #181818 100%);
+      }
+      .nav-link-custom {
+        color: #fff !important;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-link-custom:hover,
+      .nav-link-custom:focus {
+        color: #ff9800 !important;
+        text-shadow: 0 0 6px #fff2;
+      }
 
-        .hero-banner h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
+      /* Hero Banner */
+      .hero-banner {
+        background-image: url("https://images.unsplash.com/photo-1542204165-8d4edc707b92");
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
 
-        .hero-banner p {
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
+      .hero-banner h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
 
-        /* Footer and Back to Top Button */
-        #footer {
-            background-color: #222;
-            color: #ddd;
-        }
+      .hero-banner p {
+        font-size: 1.2rem;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
 
-        #footer a {
-            color: #ddd;
-        }
+      /* Footer and Back to Top Button */
+      #footer {
+        background-color: #222;
+        color: #ddd;
+      }
 
-        #footer a:hover {
-            color: #fff;
-            text-decoration: none;
-        }
+      #footer a {
+        color: #ddd;
+      }
 
-        .back-to-top-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #FA320A;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            cursor: pointer;
-        }
+      #footer a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .back-to-top-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #fa320a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body style="background-color: rgb(20, 20, 20);">
-
+  <body style="background-color: rgb(20, 20, 20)">
     <!-- Header -->
-    <header style="width:100%;">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
-            <div class="container-fluid container-2 div-custom">
-                <a class="navbar-brand filmcritics mb-1" href="index.html" style="color: #fff; font-size: 2rem;">FilmsNetwork®</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-lg-0">
-                        <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight "href="./page.html">Your page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight "href="./wishlist.html">Wishlist (<span id="cartCount">0</span>)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./search.html">
-                                <i id="search-button" style="color: #fff; font-size: 20px;" class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="text" class="nav-link p-2 bd-highlight about" href="./about.html">About®</a>
-                        </li>
-                        <li class="nav-item" id="user-confirm">
-                            <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
-                            <div id="avatar-action-container"></div>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>     
+    <header style="width: 100%">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-custom shadow-sm py-3">
+        <div class="container">
+          <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="font-size: 2rem">
+            FilmsNetwork
+            <sup style="font-size: 1rem; color: #fff">®</sup>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+              <li class="nav-item"><a class="nav-link nav-link-custom" href="./subscription.html">Subscription</a></li>
+              <li class="nav-item"><a class="nav-link nav-link-custom" href="./page.html">Your page</a></li>
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="./wishlist.html">
+                  Wishlist (
+                  <span id="cartCount">0</span>
+                  )
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white fw-semibold" href="search.html"><i class="fas fa-search"></i></a>
+              </li>
+              <li class="nav-item"><a class="nav-link nav-link-custom" href="./about.html">About</a></li>
+              <li class="nav-item" id="user-confirm">
+                <a class="nav-link nav-link-custom custom-login-link" href="./login.html">LOGIN</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Hero Banner -->
     <section class="hero-banner">
-        <div>
-            <h1>Welcome to FilmCritics®</h1>
-            <p>Your Trusted Source for Entertainment Insights</p>
-        </div>
+      <div>
+        <h1>Welcome to FilmCritics®</h1>
+        <p>Your Trusted Source for Entertainment Insights</p>
+      </div>
     </section>
 
     <!-- Our Mission Section -->
     <section class="container my-5 text-white">
-        <h2 class="text-center mb-4">Our Mission</h2>
-        <p class="text-center">At FilmCritics, we are dedicated to delivering honest, thoughtful, and diverse film and
-            television reviews. Our mission is to guide our audience through the vast world of entertainment, ensuring
-            they find movies and shows that resonate with their tastes and interests. We believe that storytelling is an
-            art, and it’s our job to celebrate, critique, and bring perspective to this art form for audiences around
-            the world.</p>
+      <h2 class="text-center mb-4">Our Mission</h2>
+      <p class="text-center">At FilmCritics, we are dedicated to delivering honest, thoughtful, and diverse film and television reviews. Our mission is to guide our audience through the vast world of entertainment, ensuring they find movies and shows that resonate with their tastes and interests. We believe that storytelling is an art, and it’s our job to celebrate, critique, and bring perspective to this art form for audiences around the world.</p>
     </section>
 
     <!-- Why Choose Us Section -->
     <section class="container my-5 text-white">
-        <h2 class="text-center mb-4">Why Choose FilmCritics?</h2>
-        <div class="row text-center">
-            <div class="col-md-4 mb-3">
-                <i class="fas fa-star fa-3x text-warning"></i>
-                <h4 class="mt-3">Expert Reviews</h4>
-                <p>Our reviews come from seasoned professionals who have a deep understanding of the entertainment
-                    industry.</p>
-            </div>
-            <div class="col-md-4 mb-3">
-                <i class="fas fa-users fa-3x text-info"></i>
-                <h4 class="mt-3">Diverse Voices</h4>
-                <p>We showcase a variety of opinions, offering perspectives from fans and critics alike.</p>
-            </div>
-            <div class="col-md-4 mb-3">
-                <i class="fas fa-thumbs-up fa-3x text-success"></i>
-                <h4 class="mt-3">Reliable Recommendations</h4>
-                <p>Whether you're looking for something new or revisiting classics, our recommendations are tailored for
-                    all tastes.</p>
-            </div>
+      <h2 class="text-center mb-4">Why Choose FilmCritics?</h2>
+      <div class="row text-center">
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-star fa-3x text-warning"></i>
+          <h4 class="mt-3">Expert Reviews</h4>
+          <p>Our reviews come from seasoned professionals who have a deep understanding of the entertainment industry.</p>
         </div>
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-users fa-3x text-info"></i>
+          <h4 class="mt-3">Diverse Voices</h4>
+          <p>We showcase a variety of opinions, offering perspectives from fans and critics alike.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-thumbs-up fa-3x text-success"></i>
+          <h4 class="mt-3">Reliable Recommendations</h4>
+          <p>Whether you're looking for something new or revisiting classics, our recommendations are tailored for all tastes.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Team Highlights Section -->
     <section class="container my-5 text-white">
-        <h2 class="text-center mb-4">Meet Our Team</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark border-0 text-white">
-                    <img src="https://ekat8wd2es5.exactdn.com/wp-content/uploads/2022/05/emma-johnson-1.jpeg?strip=all&lossy=1&quality=90&webp=90&ssl=1" class="card-img-top"
-                        alt="Team Member" style="width: 416px; height: 400px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Emma Johnson</h5>
-                        <p class="card-text">Lead Film Critic with over 15 years of experience in the industry.</p>
-                    </div>
-                </div>
+      <h2 class="text-center mb-4">Meet Our Team</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card bg-dark border-0 text-white">
+            <img src="https://ekat8wd2es5.exactdn.com/wp-content/uploads/2022/05/emma-johnson-1.jpeg?strip=all&lossy=1&quality=90&webp=90&ssl=1" class="card-img-top" alt="Team Member" style="width: 416px; height: 400px" />
+            <div class="card-body">
+              <h5 class="card-title">Emma Johnson</h5>
+              <p class="card-text">Lead Film Critic with over 15 years of experience in the industry.</p>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark border-0 text-white">
-                    <img src="https://www.battery.com/wp-content/uploads/2021/02/Michael_Brown-2021-Cropped-Headshot.jpg" class="card-img-top"
-                        alt="Team Member" style="width: 416px; height: 400px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Michael Brown</h5>
-                        <p class="card-text">Senior TV Analyst and genre specialist, bringing nuanced perspectives.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark border-0 text-white">
-                    <img src="https://image-service.usw2.wp-prod-us.cultureamp-cdn.com/AnXXW_gHdXyWsrD-vCvxcG3rwR0=/440x440/cultureampcom/production/b94/a47/9ea/b94a479eaece4ef09bda0e39/Sophia-Lee.jpeg" class="card-img-top"
-                        alt="Team Member" style="width: 416px; height: 400px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Sophia Lee</h5>
-                        <p class="card-text">Editorial Director overseeing content quality and audience engagement.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-md-4 mb-4">
+          <div class="card bg-dark border-0 text-white">
+            <img src="https://www.battery.com/wp-content/uploads/2021/02/Michael_Brown-2021-Cropped-Headshot.jpg" class="card-img-top" alt="Team Member" style="width: 416px; height: 400px" />
+            <div class="card-body">
+              <h5 class="card-title">Michael Brown</h5>
+              <p class="card-text">Senior TV Analyst and genre specialist, bringing nuanced perspectives.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card bg-dark border-0 text-white">
+            <img src="https://image-service.usw2.wp-prod-us.cultureamp-cdn.com/AnXXW_gHdXyWsrD-vCvxcG3rwR0=/440x440/cultureampcom/production/b94/a47/9ea/b94a479eaece4ef09bda0e39/Sophia-Lee.jpeg" class="card-img-top" alt="Team Member" style="width: 416px; height: 400px" />
+            <div class="card-body">
+              <h5 class="card-title">Sophia Lee</h5>
+              <p class="card-text">Editorial Director overseeing content quality and audience engagement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer id="footer" class="pt-5 pb-4">
-        <div class="container text-center text-md-left">
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
-                    <p>FilmCritics Corporation</p>
-                </div>
+      <div class="container text-center text-md-left">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Company Name</h5>
+            <p>FilmCritics Corporation</p>
+          </div>
 
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
-                    <p><a href="./index.html">Home</a></p>
-                    <p><a href="./about.html">About</a></p>
-                    <p><a href="#">Services</a></p>
-                    <p><a href="./contact.html">Contact</a></p>
-                </div>
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">More</h5>
+            <p><a href="./index.html">Home</a></p>
+            <p><a href="./about.html">About</a></p>
+            <p><a href="#">Services</a></p>
+            <p><a href="./contact.html">Contact</a></p>
+          </div>
 
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
-                    <p><i class="fas fa-home mr-3"></i> Ho Chi Minh City, Vietnam</p>
-                    <p><i class="fas fa-envelope mr-3"></i> FilmCritics@example.com</p>
-                    <p><i class="fas fa-phone mr-3"></i> +1234 5678</p>
-                    <p><i class="fas fa-print mr-3"></i> +1234 5678</p>
-                </div>
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+            <p>
+              <i class="fas fa-home mr-3"></i>
+              Ho Chi Minh City, Vietnam
+            </p>
+            <p>
+              <i class="fas fa-envelope mr-3"></i>
+              FilmCritics@example.com
+            </p>
+            <p>
+              <i class="fas fa-phone mr-3"></i>
+              +1234 5678
+            </p>
+            <p>
+              <i class="fas fa-print mr-3"></i>
+              +1234 5678
+            </p>
+          </div>
 
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
-                    <a href="https://www.facebook.com/rottentomatoes" class="btn btn-primary btn-floating m-1"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@rottentomatoes" class="btn btn-dark btn-floating m-1"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://twitter.com/RottenTomatoes" class="btn btn-info btn-floating m-1"><i
-                            class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-
-            <hr class="mb-4">
-
-            <div class="row align-items-center">
-                <div class="col-md-7 col-lg-8">
-                    <p>© 2024 Copyright: <a href="#" class="text-white"><strong>FilmCritics</strong></a></p>
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <p>Designed by Lam Phong</p>
-                </div>
-            </div>
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
+            <a href="https://www.facebook.com/rottentomatoes" class="btn btn-primary btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@rottentomatoes" class="btn btn-dark btn-floating m-1"><i class="fab fa-tiktok"></i></a>
+            <a href="https://twitter.com/RottenTomatoes" class="btn btn-info btn-floating m-1"><i class="fab fa-twitter"></i></a>
+          </div>
         </div>
+
+        <hr class="mb-4" />
+
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p>
+              © 2024 Copyright:
+              <a href="#" class="text-white"><strong>FilmCritics</strong></a>
+            </p>
+          </div>
+          <div class="col-md-5 col-lg-4">
+            <p>Designed by Lam Phong</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Back to top button -->
     <div class="back-to-top-btn" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up fa-lg" style="color:#fff;"></i>
+      <i class="fas fa-arrow-up fa-lg" style="color: #fff"></i>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+      document.addEventListener("DOMContentLoaded", function () {
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-            if (loggedInUser) {
-                document.getElementById('user-confirm').innerHTML = `
+        if (loggedInUser) {
+          document.getElementById("user-confirm").innerHTML = `
                     <a id="logout" class="nav-link p-2 bd-highlight custom-login-link" href="./index.html">
                         ${loggedInUser}
                     </a>
@@ -263,13 +278,13 @@
                     </a>
                 `;
 
-                document.getElementById('logout').addEventListener('click', function () {
-                    localStorage.removeItem('loggedInUser');
-                    localStorage.setItem('isLoggedIn', JSON.stringify(false));
-                    window.location.href = './index.html';
-                });
-            }
-        });
+          document.getElementById("logout").addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            localStorage.setItem("isLoggedIn", JSON.stringify(false));
+            window.location.href = "./index.html";
+          });
+        }
+      });
     </script>
     <!-- <script
     src="https://www.chatbase.co/embed.min.js"
@@ -277,6 +292,5 @@
     domain="www.chatbase.co"
     defer
 ></script> -->
-</body>
-
+  </body>
 </html>

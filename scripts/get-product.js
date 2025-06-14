@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-
 // Reference to the "films" collection
 const filmCollection = collection(db, "films");
 
@@ -74,7 +73,7 @@ function createFilmCard(filmsData) {
         <img src="${filmsData.image}" class="card-img-top" alt="${filmsData.name}" style="height: 250px; object-fit: cover;">
         <div class="card-body p-2 d-flex flex-column justify-content-between">
           <h6 class="card-title mb-1" style="font-size: 1rem;">${filmsData.name}</h6>
-          <button class="btn btn-warning">
+          <button class="btn btn-warning click-here-btn" data-id="${filmsData.id}">
             <a href="${filmsData.link}" data-plan="${filmsData.plan}">Click here</a>
           </button>
         </div>
@@ -136,38 +135,35 @@ function createFilmCard(filmsData) {
 //   }
 // );
 
-onSnapshot(
-  collection(db, "films"),
-  (snapshot) => {
-    const basicFilms = [];
-    const premiumFilms = [];
-    snapshot.forEach((doc) => {
-      const film = doc.data();
-      if (film.plan === "basic") {
-        basicFilms.push(film);
-      } else if (film.plan === "premium") {
-        premiumFilms.push(film);
-      }
-    });
+onSnapshot(collection(db, "films"), (snapshot) => {
+  const basicFilms = [];
+  const premiumFilms = [];
+  snapshot.forEach((doc) => {
+    const film = { ...doc.data(), id: doc.id, link: doc.link }; // Thêm id vào object phim
+    if (film.plan === "basic") {
+      basicFilms.push(film);
+    } else if (film.plan === "premium") {
+      premiumFilms.push(film);
+    }
+  });
 
-    // Render basicFilms vào #basic-film-list
-    renderCarousel(basicFilms, "basic-film-list");
-    // Render premiumFilms vào #premium-film-list
-    renderCarousel(premiumFilms, "premium-film-list");
-  }
-);
+  // Render basicFilms vào #basic-film-list
+  renderCarousel(basicFilms, "basic-film-list");
+  // Render premiumFilms vào #premium-film-list
+  renderCarousel(premiumFilms, "premium-film-list");
+});
 
 function renderCarousel(films, containerId) {
   const groups = [];
   for (let i = 0; i < films.length; i += 4) {
     groups.push(films.slice(i, i + 4));
   }
-  let carouselInner = '';
+  let carouselInner = "";
   groups.forEach((group, idx) => {
     carouselInner += `
-      <div class="carousel-item${idx === 0 ? ' active' : ''}">
+      <div class="carousel-item${idx === 0 ? " active" : ""}">
         <div class="row justify-content-center">
-          ${group.map(createFilmCard).join('')}
+          ${group.map(createFilmCard).join("")}
         </div>
       </div>
     `;
@@ -175,41 +171,11 @@ function renderCarousel(films, containerId) {
   document.getElementById(containerId).innerHTML = carouselInner;
 }
 
-// const clickHereButtons = document.querySelectorAll('.btn-warning a');
-// clickHereButtons.forEach(button => {
-//   button.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     const checkPlan = onSnapshot (
-//       collection(db, "films"),
-//       (snapshot) => {
-//         snapshot.forEach((doc) => {
-//           const filmData = doc.data();
-//           if (filmData.plan === "") {
-//               alert("This film is not available for your current plan. Please upgrade to access this content.");
-//           } if (filmData.plan === "basic") {
-//               window.location.href = filmData.link;
-//           } if (filmData.plan === "standard") {
-//               window.location.href = filmData.link;
-//           } if (filmData.plan === "premium") {
-//               window.location.href = filmData.link;
-//           }
-//         });
-//       },
-//       (error) => {
-//         console.error("Error checking film plan: ", error);
-//       }
-//     );
-//   });
-// });
-
-document.addEventListener("click", async function(e) {
-  const aTag = e.target.closest('.btn-warning a');
-  if (!aTag) return;
+document.addEventListener("click", async function (e) {
+  const btn = e.target.closest(".click-here-btn");
+  if (!btn) return;
 
   e.preventDefault();
-
-  // Lấy thông tin phim từ thẻ (nên truyền id phim qua data attribute)
-  const filmName = aTag.closest('.card').querySelector('.card-title').textContent.trim();
 
   // Lấy user hiện tại
   const user = auth.currentUser;
@@ -219,27 +185,22 @@ document.addEventListener("click", async function(e) {
     return;
   }
 
-  // Lấy thông tin user từ Firestore
-  const db = getFirestore();
-  const userDoc = await getDoc(doc(db, "users", user.uid));
-  if (!userDoc.exists()) {
-    alert("User info not found!");
-    return;
-  }
-  const userData = userDoc.data();
-  const userPlan = userData.subscription || "free";
-
-  // Lấy plan của phim (nên truyền plan qua data-plan hoặc lấy từ biến đã có)
-  // Ví dụ: <a href="..." data-plan="premium">
-  const filmPlan = aTag.dataset.plan || "basic"; // hoặc lấy từ biến filmsData.plan
-
-  // So sánh quyền truy cập
-  const planOrder = ["free", "basic", "standard", "premium"];
-  if (planOrder.indexOf(userPlan) < planOrder.indexOf(filmPlan)) {
-    alert("You need to upgrade your subscription to view this film.");
+  // Lấy id phim từ data-id của nút vừa click
+  const filmId = btn.getAttribute("data-id");
+  console.log("Film ID:", filmId);
+  if (!filmId) {
+    alert("Film ID not found!");
     return;
   }
 
-  // Nếu hợp lệ, cho chuyển trang
-  window.location.href = aTag.href;
+  const filmDoc = await getDoc(doc(filmCollection, filmId));
+  if (!filmDoc.exists()) {
+    console.error("No film data found.");
+    return;
+  } else {
+    console.log("Film data:", filmDoc.data().name, filmDoc.data().plan);
+    const filmData = filmDoc.data();
+    // chuyển hướng sang trang phim
+    window.location.href = `${filmData.link}`;
+  }
 });
