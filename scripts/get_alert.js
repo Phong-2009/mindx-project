@@ -1,10 +1,17 @@
 import { getFirestore, collection, onSnapshot, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+import { onAuthStateChanged, getAuth} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 const db = getFirestore();
 const notificationsRef = collection(db, "notifications");
 const notificationsList = document.getElementById("notifications-list");
 const noNoti = document.getElementById("no-notification");
 
+// Kiểm tra người dùng đã đăng nhập
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "/login.html";
+  }
+});
 // Lắng nghe realtime Firestore
 onSnapshot(query(notificationsRef, orderBy("time", "desc")), (snapshot) => {
   notificationsList.innerHTML = "";
