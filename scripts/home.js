@@ -38,11 +38,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             const logoutButton = document.getElementById("logout");
             if (logoutButton) {
               logoutButton.addEventListener("click", async () => {
-                await auth.signOut();
-                alert("You have been logged out.");
-                userConfirm.innerHTML = `
-                  <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
-                `; // Clear user info
+                if (confirm("Are you sure you want to log out?")) {
+                  await auth.signOut();
+                  alert("You have been logged out.");
+                  userConfirm.innerHTML = `
+                    <a id="user-confirm" class="nav-link p-2 bd-highlight custom-login-link" href="./login.html">LOGIN</a>
+                  `; // Clear user info
+                }
               });
             }
           }
@@ -82,7 +84,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelector("#hero-preview-image").src = `https://image.tmdb.org/t/p/w300${main.poster_path}`;
   document.querySelector("#hero-title").innerText = main.title || main.name;
   document.querySelector("#hero-description").innerText = main.overview;
-  document.querySelector("#watch-now-btn").href = `./watch.html?id=${main.id}`;
   document.querySelector("#view-info-btn").href = `./info.html?id=${main.id}`;
 
   const container = document.querySelector("#api_container");
@@ -148,12 +149,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <button type="button" class="btn btn-warning click-here">
                   <a class="a-tag text-dark" href="./info.html?id=${item.id}">Click here</a>
                 </button>
-                <button type="button" class="btn btn-success greenButton">
-                  <a id="greenButton" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
+                <button type="button" class="btn btn-success wishlist">
+                  <a id="wishlist" class="a-tag text-light"><i class="fa-solid fa-heart"></i></a>
                 </button>
-                <button type="button" class="btn btn-danger watch-btn">
-                  <a class="a-tag text-light" href="./watch.html?id=${item.id}"><i class="fa-solid fa-film"></i></a>
-                </button>    
             </div>
               </div>
           </div>`;
@@ -164,24 +162,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     // Add event listeners for search button
     // Add event listeners for click here buttons
-    const clickHereButtons = document.getElementsByClassName("click-here");
-    if (clickHereButtons.length > 0) {
-      for (let i = 0; i < clickHereButtons.length; i++) {
-        clickHereButtons[i].addEventListener("click", function () {
-          // Check if the user is logged in
-          onAuthStateChanged(auth, (user) => {
-            if (user) {
-              //  User is logged in
-              console.log("Logged in as:", user.email);
-            } else {
-              // Not logged in
-                alert("You need to log in to watch");
-                window.location.href = "./login.html";
-            }
-          });
-        });
-      }
-    }
+    // const clickHereButtons = document.getElementsByClassName("click-here");
+    // if (clickHereButtons.length > 0) {
+    //   for (let i = 0; i < clickHereButtons.length; i++) {
+    //     clickHereButtons[i].addEventListener("click", function () {
+    //       // Check if the user is logged in
+    //       onAuthStateChanged(auth, (user) => {
+    //         if (user) {
+    //           //  User is logged in
+    //           console.log("Logged in as:", user.email);
+    //         } else {
+    //           // Not logged in
+    //             alert("You need to log in to watch");
+    //             window.location.href = "./login.html";
+    //         }
+    //       });
+    //     });
+    //   }
+    // }
     const watchButtons = document.getElementsByClassName("watch-btn");
     if (watchButtons.length > 0) {
       for (let i = 0; i < watchButtons.length; i++) {

@@ -1,11 +1,31 @@
-import { db, auth } from "./firebase-config.js";
+import { auth } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { doc, getDoc, getDocs, addDoc, setDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { getFirestore, collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+
 const filmNameInput = document.getElementById('new-name');
 const filmDescriptionInput = document.getElementById('new-description');
 const filmImageInput = document.getElementById('new-image');
+const filmLinkInput = document.getElementById('new-link'); 
+const filmPlanInput = document.getElementById('new-plan'); 
 const filmForm = document.getElementById('create-film-form');
 const filmList = document.getElementById('film-list');
+const db = getFirestore();
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "./login.html";
+    return;
+  }
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+  if (!userSnap.exists() || userSnap.data().role !== "admin") {
+    window.location.href = "./login.html";
+    return;
+  }
+  // User is admin, allow access
+});
 
 // logout function 
 const logout = document.getElementById('logout-btn');
@@ -31,9 +51,11 @@ const handleSubmit = async (e) => {
     const filmName = filmNameInput.value.trim();
     const filmDescription = filmDescriptionInput.value.trim();
     const filmImage = filmImageInput.value.trim();
+    const filmLink = filmLinkInput.value.trim();
+    const filmPlan = filmPlanInput.value.trim();
 
     // Prevent adding if any field is blank
-    if (!filmName || !filmDescription || !filmImage) {
+    if (!filmName || !filmDescription || !filmImage || !filmLink || !filmPlan) {
         alert("Input all fields to create");
         return;
     }
@@ -62,10 +84,12 @@ const handleSubmit = async (e) => {
         const docRef = await addDoc(collection(db, "films"), {
             name: filmName,
             description: filmDescription,
-            image: filmImage
+            image: filmImage,
+            link: filmLink,
+            plan: filmPlan
             // Add uid here if you have it
         });
-
+        alert("Film created successfully!");
         console.log("Document written with ID: ", docRef.id);
 
     } catch (error) {
@@ -74,6 +98,7 @@ const handleSubmit = async (e) => {
 }
 
 filmForm.addEventListener('submit', handleSubmit);
+
 // Function to render films
 const renderFilmsRealtime = () => {
     const filmsRef = collection(db, "films");
@@ -136,6 +161,8 @@ document.addEventListener('click', async (e) => {
             document.getElementById('edit-name').value = film.name;
             document.getElementById('edit-description').value = film.description;
             document.getElementById('edit-image').value = film.image;
+            document.getElementById('edit-link').value = film.link;
+            document.getElementById('edit-plan').value = film.plan;
             // Hiện modal
             const editModal = new bootstrap.Modal(document.getElementById('editModal'));
             editModal.show();

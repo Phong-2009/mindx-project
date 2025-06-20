@@ -9,31 +9,11 @@ if (!movieId) location.href = "./index.html";
 const labels = ["data", "casts", "similar"];
 
 (async () => {
-  const result = (
-    await Promise.all([
-      (
-        await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
-        )
-      ).json(),
-      (
-        await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${TMDB_API_KEY}`
-        )
-      ).json(),
-      (
-        await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${TMDB_API_KEY}`
-        )
-      ).json(),
-    ])
-  ).reduce((final, current, index) => {
+  const result = (await Promise.all([(await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`)).json(), (await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${TMDB_API_KEY}`)).json(), (await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${TMDB_API_KEY}`)).json()])).reduce((final, current, index) => {
     if (labels[index] === "data") {
       final[labels[index]] = current;
     } else if (labels[index] === "casts") {
-      final[labels[index]] = current.cast
-        .filter((item) => item.name && item.character && item.profile_path)
-        .slice(0, 10);
+      final[labels[index]] = current.cast.filter((item) => item.name && item.character && item.profile_path).slice(0, 10);
     } else if (labels[index] === "similar") {
       final[labels[index]] = current.results;
     }
@@ -43,29 +23,30 @@ const labels = ["data", "casts", "similar"];
 
   console.log(result);
 
-  document.querySelector(
-    ".background-img"
-  ).style.backgroundImage = `url('https://image.tmdb.org/t/p/original${result.data.backdrop_path}')`;
+  document.querySelector(".background-img").style.backgroundImage = `url('https://image.tmdb.org/t/p/original${result.data.backdrop_path}')`;
 
-  document.querySelector(
-    "#preview-img"
-  ).src = `https://image.tmdb.org/t/p/w300${result.data.poster_path}`;
-  document.querySelector("#movie-title").innerText =
-    result.data.title || result.data.name;
+  document.querySelector("#preview-img").src = `https://image.tmdb.org/t/p/w300${result.data.poster_path}`;
+  document.querySelector("#movie-title").innerText = result.data.title || result.data.name;
   document.querySelector("#movie-description").innerText = result.data.overview;
-  document.querySelector(
-    "#watch-now-btn"
-  ).href = `./watch.html?id=${result.data.id}`;
+  document.querySelector("#watch-now-btn").href = `./watch.html?id=${result.data.id}`;
 
-  if (result.data.release_date)
-    document.querySelector(
-      "#release-date"
-    ).innerText = `Release Date: ${result.data.release_date}`;
+  // ...sau khi lấy được filmId và render info phim...
+  // const params = new URLSearchParams(window.location.search);
+  // console.log(params);
+  // console.log(window.location.search);
+  // const fromPage = params.get("from");
+  // console.log(fromPage);
+  // const watchBtnContainer = document.getElementById("watch-now-btn");
+  // if (watchBtnContainer) {
+  //   if (fromPage === "page.html") {
+  //     watchBtnContainer.innerHTML = `<a href="watch.html?id=${filmId}" class="btn btn-primary">Watch</a>`;
+  //   } else {
+  //     watchBtnContainer.innerHTML = ""; 
+  //   }
+  // }
+  if (result.data.release_date) document.querySelector("#release-date").innerText = `Release Date: ${result.data.release_date}`;
 
-  if (result.data.genres)
-    document.querySelector("#genres").innerHTML = result.data.genres
-      .map((genres) => `<span>${genres.name}</span>`)
-      .join("");
+  if (result.data.genres) document.querySelector("#genres").innerHTML = result.data.genres.map((genres) => `<span>${genres.name}</span>`).join("");
 
   if (result.casts) {
     document.querySelector(".casts-carousel .swiper-wrapper").innerHTML = result.casts
@@ -88,7 +69,7 @@ const labels = ["data", "casts", "similar"];
       )
       .join("");
   }
-  
+
   // Initialize Swiper
   const swiper = new Swiper(".casts-carousel", {
     loop: true,
@@ -104,7 +85,6 @@ const labels = ["data", "casts", "similar"];
       1440: { slidesPerView: 5 },
     },
   });
-  
 
   if (result.similar && result.similar.length > 0)
     document.querySelector("#similar").innerHTML += /*html*/ `
@@ -116,9 +96,7 @@ const labels = ["data", "casts", "similar"];
         ${result.similar
           .map(
             (item) => /*html*/ `
-        <a href="./info.html?id=${
-          item.id
-        }" class="swiper-slide" style="width: 200px !important">
+        <a href="./info.html?id=${item.id}" class="swiper-slide" style="width: 200px !important">
           <div class="movie-card">
             <img
               class="fade-in"
