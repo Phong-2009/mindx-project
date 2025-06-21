@@ -38,3 +38,4 @@ onSnapshot(query(notificationsRef, orderBy("time", "desc")), (snapshot) => {
     notificationsList.appendChild(div);
   });
 });
+

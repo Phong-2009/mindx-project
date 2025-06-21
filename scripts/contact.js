@@ -1,6 +1,6 @@
 import { auth } from './firebase-config.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
-import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+import { getFirestore, doc, getDoc, addDoc, collection, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
 const db = getFirestore();
 
@@ -51,7 +51,63 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     } else {
       // No user is signed in
-      console.log('No user is signed in');
+      window.location.href = "./login.html"; // Redirect to login page
     }
   });
 });
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      // Khi gửi comment:
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = document.getElementById('message').value.trim();
+        if (!message) {
+          alert("Please fill in all fields.");
+          return;
+        }
+        try {
+          await addDoc(collection(db, "comments"), {
+            name: userData.firstName + " " + userData.lastName,
+            email: userData.email,
+            message,
+            time: serverTimestamp()
+          });
+          alert("Your message has been sent successfully!");
+          contactForm.reset();
+        } catch (error) {
+          alert("There was an error sending your message. Please try again later.");
+        }
+      });
+    }
+  }
+});
+// contact the admin
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {  
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const message = document.getElementById('message').value.trim();
+
+    if (!message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      // Here you would typically send the message to your server or admin email
+        await addDoc(collection(db, "comments"), {
+          message,
+          time: serverTimestamp() // Add a timestamp
+        });
+      alert("Your message has been sent successfully!");
+      contactForm.reset(); // Clear the form
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      alert("There was an error sending your message. Please try again later.");
+    }
+  });
+}
