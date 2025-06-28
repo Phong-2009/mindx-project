@@ -73,8 +73,11 @@ function createFilmCard(filmsData) {
         <img src="${filmsData.image}" class="card-img-top" alt="${filmsData.name}" style="height: 250px; object-fit: cover;">
         <div class="card-body p-2 d-flex flex-column justify-content-between">
           <h6 class="card-title mb-1" style="font-size: 1rem;">${filmsData.name}</h6>
-          <button href="${filmsData.link}" class="btn btn-warning click-here-btn" data-id="${filmsData.id}">
-            <a style="color: inherit; text-decoration: none;" href="${filmsData.link}" data-plan="${filmsData.plan}">Click here</a>
+          <button class="btn btn-warning click-here-btn" data-id="${filmsData.id}" href="${filmsData.link}" data-plan="${filmsData.plan}">
+            Click here
+          </button>
+          <button class="btn btn-info watch-here-btn" data-id="${filmsData.id}" href="${filmsData.watchLink}" data-plan="${filmsData.plan}">
+            <i class="fa-solid fa-film"></i>
           </button>
         </div>
       </div>
@@ -210,5 +213,47 @@ document.addEventListener("click", async function (e) {
   }
     // chuyển hướng sang trang phim
     window.location.href = `${filmData.link}`;
+  }
+});
+
+document.addEventListener("click", async function (e) {
+  const watchBtn = e.target.closest(".watch-here-btn");
+  if (!watchBtn) return;
+
+  e.preventDefault();
+
+  // Lấy user hiện tại
+  const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+  if (!userDoc.exists()) {
+    alert("Please login to view this film.");
+    window.location.href = "./login.html";
+    return;
+  }
+
+  const userSubscription = userDoc.data().subscription;
+
+  // Lấy id phim từ data-id của nút vừa click
+  const filmId = watchBtn.getAttribute("data-id");
+  console.log("Film ID:", filmId);
+  if (!filmId) {
+    alert("Film ID not found!");
+    return;
+  }
+
+  const filmDoc = await getDoc(doc(filmCollection, filmId));
+  if (!filmDoc.exists()) {
+    console.error("No film data found.");
+    return;
+  } else {
+      console.log("Film data:", filmDoc.data().name, filmDoc.data().plan);
+      const filmData = filmDoc.data();
+      console.log("Film data:", filmData);
+
+  if (filmData.plan == "premium" && userSubscription != filmData.plan) {
+    alert("Your subscription does not allow you to view this film. Please upgrade your plan.");
+    return;
+  }
+    // chuyển hướng sang trang phim
+    window.location.href = `${filmData.watchLink}`;
   }
 });

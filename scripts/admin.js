@@ -8,6 +8,7 @@ const filmNameInput = document.getElementById('new-name');
 const filmDescriptionInput = document.getElementById('new-description');
 const filmImageInput = document.getElementById('new-image');
 const filmLinkInput = document.getElementById('new-link'); 
+const filmWatchLinkInput = document.getElementById('new-watch-link');
 const filmPlanInput = document.getElementById('new-plan'); 
 const filmForm = document.getElementById('create-film-form');
 const filmList = document.getElementById('film-list');
@@ -53,10 +54,12 @@ const handleSubmit = async (e) => {
     const filmDescription = filmDescriptionInput.value.trim();
     const filmImage = filmImageInput.value.trim();
     const filmLink = filmLinkInput.value.trim();
+    const filmWatchLink = filmWatchLinkInput.value.trim();
     const filmPlan = filmPlanInput.value.trim();
 
+
     // Prevent adding if any field is blank
-    if (!filmName || !filmDescription || !filmImage || !filmLink || !filmPlan) {
+    if (!filmName || !filmDescription || !filmImage || !filmLink || !filmWatchLink || !filmPlan) {
         alert("Input all fields to create");
         return;
     }
@@ -87,6 +90,7 @@ const handleSubmit = async (e) => {
             description: filmDescription,
             image: filmImage,
             link: filmLink,
+            watchLink: filmWatchLink, // Add watch link
             plan: filmPlan
             // Add uid here if you have it
         });
@@ -163,6 +167,7 @@ document.addEventListener('click', async (e) => {
             document.getElementById('edit-description').value = film.description;
             document.getElementById('edit-image').value = film.image;
             document.getElementById('edit-link').value = film.link;
+            document.getElementById('edit-watch-link').value = film.watchLink; // Set watch link
             document.getElementById('edit-plan').value = film.plan;
             // Hiện modal
             const editModal = new bootstrap.Modal(document.getElementById('editModal'));
@@ -178,15 +183,17 @@ document.getElementById('edit-film-form').addEventListener('submit', async (e) =
     const name = document.getElementById('edit-name').value.trim();
     const description = document.getElementById('edit-description').value.trim();
     const image = document.getElementById('edit-image').value.trim();
-
-    if (!name || !description || !image) {
+    const link = document.getElementById('edit-link').value.trim();
+    const watchLink = document.getElementById('edit-watch-link').value.trim(); // Lấy watch link
+    const plan = document.getElementById('edit-plan').value.trim();
+    if (!name || !description || !image || !link || !watchLink || !plan) {
         alert("Please fill all fields.");
         return;
     }
 
     try {
         const filmDocRef = doc(db, "films", filmId);
-        await updateDoc(filmDocRef, { name, description, image });
+        await updateDoc(filmDocRef, { name, description, image, link, watchLink });
         // Đóng modal
         bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
         alert("Film updated successfully!");

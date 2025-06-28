@@ -31,19 +31,19 @@ const labels = ["data", "casts", "similar"];
   document.querySelector("#watch-now-btn").href = `./watch.html?id=${result.data.id}`;
 
   // ...sau khi lấy được filmId và render info phim...
-  // const params = new URLSearchParams(window.location.search);
-  // console.log(params);
-  // console.log(window.location.search);
-  // const fromPage = params.get("from");
-  // console.log(fromPage);
-  // const watchBtnContainer = document.getElementById("watch-now-btn");
-  // if (watchBtnContainer) {
-  //   if (fromPage === "page.html") {
-  //     watchBtnContainer.innerHTML = `<a href="watch.html?id=${filmId}" class="btn btn-primary">Watch</a>`;
-  //   } else {
-  //     watchBtnContainer.innerHTML = ""; 
-  //   }
-  // }
+  const params = new URLSearchParams(window.location.search);
+  console.log(params);
+  console.log(window.location.search);
+  const fromPage = params.get("from");
+  console.log(fromPage);
+  const watchBtnContainer = document.getElementById("watch-now-btn");
+  if (watchBtnContainer) {
+    if (fromPage === "page.html") {
+      watchBtnContainer.innerHTML = `<a href="watch.html?id=${filmId}" class="btn btn-primary">Watch</a>`;
+    } else {
+      watchBtnContainer.innerHTML = ""; 
+    }
+  }
   if (result.data.release_date) document.querySelector("#release-date").innerText = `Release Date: ${result.data.release_date}`;
 
   if (result.data.genres) document.querySelector("#genres").innerHTML = result.data.genres.map((genres) => `<span>${genres.name}</span>`).join("");

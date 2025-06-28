@@ -103,21 +103,7 @@ const labels = ["data", "similar"];
         : `./assets/default-avatar.png`
     }" />
 
-    <div ${!user ? "onclick='location.href = \"./login.html\"'" : ""}>
-      <input
-        required
-        type="text"
-        placeholder="${
-          user ? `Comment as ${user.username}` : "Sign in to comment"
-        }"
-        id="comment"
-        name="comment"
-        ${user ? "" : "style='pointer-events: none'"}
-      />
-      <button type="submit"
-        ${user ? "" : 'style="display: none"'}
-       ><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
+    
   </form>
   `;
 
